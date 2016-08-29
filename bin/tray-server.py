@@ -5,10 +5,14 @@ __license__ = "GPL"
 __email__ = "shrinidhi666@gmail.com"
 
 import sys
+import os
 from PyQt5 import QtWidgets, QtGui, QtCore
 import subprocess
 import time
+import appdirs
 
+homeconfig = appdirs.user_config_dir("per-app-framework")
+filepath = os.sep.join(os.path.abspath(__file__))
 
 class appChangedPoll(QtCore.QThread):
   appChanged = QtCore.pyqtSignal(str)
@@ -31,7 +35,7 @@ class appChangedPoll(QtCore.QThread):
           for y in q:
             if (y.startswith("WM_CLASS(STRING)")):
               if(lastapp != y):
-                self.appChanged.emit(unicode(y))
+                self.appChanged.emit(unicode(y).split("=")[-1].strip().split(",")[-1].strip().strip("\""))
                 lastapp = y
       time.sleep(1)
 
@@ -41,7 +45,7 @@ def main():
   changePoll.start()
   app = QtWidgets.QApplication(sys.argv)
 
-  trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon("./scalable-icons.png"), app)
+  trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
   menu = QtWidgets.QMenu()
   exitAction = menu.addAction("Exit")
 
@@ -59,6 +63,9 @@ def quit():
 
 def notify(tray,appdets):
   tray.showMessage('App Changed', appdets,msecs = 3000)
+  if(os.path.exists(os.path.join(homeconfig,appdets))):
+    p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
+    print(p)
 
 
 if __name__ == '__main__':
