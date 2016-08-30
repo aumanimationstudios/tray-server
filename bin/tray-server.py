@@ -63,7 +63,7 @@ def quit():
 
 
 def notify(tray,appdets):
-  tray.showMessage('App Changed', appdets,msecs = 3000)
+  # tray.showMessage('App Changed', appdets,msecs = 3000)
   if(os.path.exists(os.path.join(homeconfig,appdets))):
     p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
     print(p)
