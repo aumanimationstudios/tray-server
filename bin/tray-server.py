@@ -12,7 +12,7 @@ import time
 import appdirs
 
 homeconfig = appdirs.user_config_dir("per-app-framework")
-filepath = os.sep.join(os.path.abspath(__file__))
+filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
 
 class appChangedPoll(QtCore.QThread):
   appChanged = QtCore.pyqtSignal(str)
@@ -44,6 +44,7 @@ def main():
   changePoll = appChangedPoll()
   changePoll.start()
   app = QtWidgets.QApplication(sys.argv)
+  print(os.path.join(filepath,"paf.png"))
 
   trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
   menu = QtWidgets.QMenu()
