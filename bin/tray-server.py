@@ -29,9 +29,7 @@ class appChangedPoll(QtCore.QThread):
       for x in p:
         if (x.startswith("_NET_ACTIVE_WINDOW(WINDOW)")):
           window_name_cmd = "xprop -id {0}".format(x.split("#")[-1].strip())
-          q = \
-          subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[
-            0].split("\n")
+          q = subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
           for y in q:
             if (y.startswith("WM_CLASS(STRING)")):
               if(lastapp != y):
