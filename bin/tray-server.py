@@ -74,7 +74,7 @@ def app_lock(tray):
     tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
     debug.warning("already an instance of the app is running.")
     debug.warning("delete the file {0}".format(app_lock_file))
-    QtCore.QCoreApplication.instance().quit()
+    # QtCore.QCoreApplication.instance().quit()
     sys.exit(1)
   else:
     f = open(app_lock_file,"w")
@@ -110,7 +110,6 @@ def notify(tray,appdets):
       debug.info(p)
     except:
       debug.error(sys.exc_info())
-
 
 
 if __name__ == '__main__':
