@@ -10,9 +10,20 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 import subprocess
 import time
 import appdirs
+import signal
+import debug
+
 
 homeconfig = appdirs.user_config_dir("per-app-framework")
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
+app_lock_file = "/tmp/per-app-framework-{0}.lock".format(os.environ['USER'])
+
+def receive_signal(signum, stack):
+  quit()
+
+signal.signal(signal.SIGTERM, receive_signal)
+signal.signal(signal.SIGINT, receive_signal)
+
 
 class appChangedPoll(QtCore.QThread):
   appChanged = QtCore.pyqtSignal(str)
@@ -24,8 +35,7 @@ class appChangedPoll(QtCore.QThread):
     active_window_cmd = "xprop -root"
     lastapp = ""
     while (True):
-      p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[
-        0].split("\n")
+      p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
       for x in p:
         if (x.startswith("_NET_ACTIVE_WINDOW(WINDOW)")):
           window_name_cmd = "xprop -id {0}".format(x.split("#")[-1].strip())
@@ -33,7 +43,7 @@ class appChangedPoll(QtCore.QThread):
           for y in q:
             if (y.startswith("WM_CLASS(STRING)")):
               if(lastapp != y):
-                self.appChanged.emit(unicode(y).split("=")[-1].strip().split(",")[-1].strip().strip("\""))
+                self.appChanged.emit(unicode(y).split("=")[-1].strip().split(",")[-1].strip().strip("\"").lower())
                 lastapp = y
       time.sleep(1)
 
@@ -42,7 +52,7 @@ def main():
   changePoll = appChangedPoll()
   changePoll.start()
   app = QtWidgets.QApplication(sys.argv)
-  print(os.path.join(filepath,"paf.png"))
+  debug.info(os.path.join(filepath,"paf.png"))
 
   trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
   menu = QtWidgets.QMenu()
@@ -52,19 +62,55 @@ def main():
   exitAction.triggered.connect(quit)
   trayIcon.show()
   changePoll.appChanged.connect(lambda s,tray=trayIcon : notify(tray,s))
+  app_lock(trayIcon)
+  run_once()
   sys.exit(app.exec_())
 
 
 
+def app_lock(tray):
+  if(os.path.exists(app_lock_file)):
+    tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
+    tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
+    debug.warning("already an instance of the app is running.")
+    debug.warning("delete the file {0}".format(app_lock_file))
+    QtCore.QCoreApplication.instance().quit()
+    sys.exit(1)
+  else:
+    f = open(app_lock_file,"w")
+    f.write("")
+    f.flush()
+    f.close()
+
+
+
+
 def quit():
+  debug.debug("quitting")
+  try:
+    os.remove(app_lock_file)
+  except:
+    debug.error(sys.exc_info())
   QtCore.QCoreApplication.instance().quit()
+
+def run_once():
+  if(os.path.exists(os.path.join(homeconfig,"per-app-framework-default"))):
+    try:
+      p = subprocess.Popen(os.path.join(homeconfig,"per-app-framework-default"),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
+      debug.info(p)
+    except:
+      debug.error(sys.exc_info())
 
 
 def notify(tray,appdets):
-  # tray.showMessage('App Changed', appdets,msecs = 3000)
+  debug.info(appdets)
   if(os.path.exists(os.path.join(homeconfig,appdets))):
-    p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
-    print(p)
+    try:
+      p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
+      debug.info(p)
+    except:
+      debug.error(sys.exc_info())
+
 
 
 if __name__ == '__main__':
