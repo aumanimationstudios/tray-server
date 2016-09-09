@@ -1,0 +1,13 @@
+#!/bin/sh
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 2 "key shift"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 3 "key ctrl"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 8 "key b"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 9 "key e"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 1 "key ctrl s"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 10 "key ctrl t"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 11 "key z"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 12 "key ctrl r"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 13 "key shift backspace"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 15 "key ctrl u"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 16 "key ctrl b"
+xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 17 "key v"

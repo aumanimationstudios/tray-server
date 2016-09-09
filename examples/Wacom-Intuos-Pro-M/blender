@@ -1,0 +1,3 @@
+#!/bin/sh
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 2 "key 7"
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 3 "key 8"
