@@ -1,3 +1,6 @@
 #!/bin/sh
-xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 2 "key 1"
-xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 3 "key 2"
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen stylus" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen eraser" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen cursor" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 2 "key 1"
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 3 "key 2"
