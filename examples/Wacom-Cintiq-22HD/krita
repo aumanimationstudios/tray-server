@@ -1,0 +1,17 @@
+#!/bin/sh
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pen stylus" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pen eraser" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 2 "key shift"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 3 "key ctrl"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 8 "key e"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 9 "key ctrl z"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 1 "key ctrl s"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 10 "key ctrl t"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 11 "key ctrl shit a"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 12 "key ctrl c"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 13 "key ctrl v"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 15 "key ctrl u"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 16 "key ctrl b"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 17 "key v"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 18 "key shift backspace"
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pad pad" Button 14 "key enter"

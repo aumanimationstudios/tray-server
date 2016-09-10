@@ -1,0 +1,3 @@
+#!/bin/sh
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pen stylus" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 22HD Pen eraser" MapToOutput HEAD-0
