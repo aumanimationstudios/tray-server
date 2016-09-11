@@ -12,7 +12,7 @@ import time
 import appdirs
 import signal
 import debug
-
+import psutil
 
 homeconfig = appdirs.user_config_dir("per-app-framework")
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
@@ -70,15 +70,27 @@ def main():
 
 def app_lock(tray):
   if(os.path.exists(app_lock_file)):
-    tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
-    tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
-    debug.warning("already an instance of the app is running.")
-    debug.warning("delete the file {0}".format(app_lock_file))
-    # QtCore.QCoreApplication.instance().quit()
-    sys.exit(1)
+    f = open(app_lock_file,"r")
+    pid = f.read().strip()
+    f.close()
+    debug.info(pid)
+    try:
+      p = psutil.Process(int(pid))
+      tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
+      tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
+      debug.warning("already an instance of the app is running.")
+      debug.warning("delete the file {0}".format(app_lock_file))
+      QtCore.QCoreApplication.instance().quit()
+      os._exit(1)
+    except:
+      debug.warn(sys.exc_info())
+      f = open(app_lock_file,"w")
+      f.write(unicode(os.getpid()))
+      f.flush()
+      f.close()
   else:
     f = open(app_lock_file,"w")
-    f.write("")
+    f.write(unicode(os.getpid()))
     f.flush()
     f.close()
 
@@ -92,6 +104,7 @@ def quit():
   except:
     debug.error(sys.exc_info())
   QtCore.QCoreApplication.instance().quit()
+  os._exit(0)
 
 def run_once():
   if(os.path.exists(os.path.join(homeconfig,"per-app-framework-default"))):
