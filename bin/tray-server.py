@@ -62,11 +62,13 @@ def main():
 
   trayIcon.setContextMenu(menu)
   exitAction.triggered.connect(quit)
+  trayIcon.setToolTip("per-app-framework")
   trayIcon.show()
   changePoll.appChanged.connect(lambda s,tray=trayIcon : notify(tray,s))
   app_lock(trayIcon)
   run_once()
-  sys.exit(app.exec_())
+  # sys.exit(app.exec_())
+  os._exit((app.exec_()))
 
 
 
