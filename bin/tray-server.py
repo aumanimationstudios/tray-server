@@ -23,6 +23,8 @@ def receive_signal(signum, stack):
 
 signal.signal(signal.SIGTERM, receive_signal)
 signal.signal(signal.SIGINT, receive_signal)
+signal.signal(signal.SIGABRT, receive_signal)
+signal.signal(signal.SIGHUP, receive_signal)
 
 
 class appChangedPoll(QtCore.QThread):
