@@ -80,12 +80,15 @@ def app_lock(tray):
     debug.info(pid)
     try:
       p = psutil.Process(int(pid))
-      tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
-      tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
-      debug.warning("already an instance of the app is running.")
-      debug.warning("delete the file {0}".format(app_lock_file))
-      QtCore.QCoreApplication.instance().quit()
-      os._exit(1)
+      if(os.path.abspath(p.cmdline()[1]) == os.path.abspath(__file__)):
+        tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
+        tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
+        debug.warning("already an instance of the app is running.")
+        debug.warning("delete the file {0}".format(app_lock_file))
+        QtCore.QCoreApplication.instance().quit()
+        os._exit(1)
+      else:
+        raise Exception("seems like a different process has the same pid")
     except:
       debug.warn(sys.exc_info())
       f = open(app_lock_file,"w")
