@@ -13,6 +13,7 @@ import appdirs
 import signal
 import debug
 import psutil
+import fcntl
 
 homeconfig = appdirs.user_config_dir("per-app-framework")
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
@@ -73,8 +74,11 @@ def main():
 
 
 def app_lock(tray):
+  import random
+  time.sleep(random.uniform(0.000,0.500))
   if(os.path.exists(app_lock_file)):
     f = open(app_lock_file,"r")
+    fcntl.flock(f, fcntl.LOCK_EX)
     pid = f.read().strip()
     f.close()
     debug.info(pid)
@@ -97,6 +101,7 @@ def app_lock(tray):
       f.close()
   else:
     f = open(app_lock_file,"w")
+    fcntl.flock(f,fcntl.LOCK_EX)
     f.write(unicode(os.getpid()))
     f.flush()
     f.close()
