@@ -51,6 +51,9 @@ class appChangedPoll(QtCore.QThread):
       time.sleep(1)
 
 
+
+
+
 def main():
   changePoll = appChangedPoll()
   changePoll.start()
@@ -63,9 +66,9 @@ def main():
 
   trayIcon.setContextMenu(menu)
   exitAction.triggered.connect(quit)
-  trayIcon.setToolTip("per-app-framework")
+  trayIcon.setToolTip("tray-server")
   trayIcon.show()
-  changePoll.appChanged.connect(lambda s,tray=trayIcon : notify(tray,s))
+  changePoll.appChanged.connect(lambda s,tray=trayIcon : run_per_app(tray,s))
   app_lock(trayIcon)
   run_once()
   # sys.exit(app.exec_())
@@ -85,8 +88,8 @@ def app_lock(tray):
     try:
       p = psutil.Process(int(pid))
       if(os.path.abspath(p.cmdline()[1]) == os.path.abspath(__file__)):
-        tray.showMessage('per-app-framework', 'Already an instance of the app is running.',msecs = 10000)
-        tray.showMessage('per-app-framework', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
+        tray.showMessage('tray-server', 'Already an instance of the app is running.',msecs = 10000)
+        tray.showMessage('tray-server', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
         debug.warning("already an instance of the app is running.")
         debug.warning("delete the file {0}".format(app_lock_file))
         QtCore.QCoreApplication.instance().quit()
@@ -127,7 +130,7 @@ def run_once():
       debug.error(sys.exc_info())
 
 
-def notify(tray,appdets):
+def run_per_app(tray,appdets):
   debug.info(appdets)
   if(os.path.exists(os.path.join(homeconfig,appdets))):
     try:
