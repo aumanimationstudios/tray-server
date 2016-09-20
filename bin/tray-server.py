@@ -61,13 +61,16 @@ def main():
   debug.info(os.path.join(filepath,"paf.png"))
 
   trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
+  trayIcon.messageClicked.connect(pidgin_notify)
   menu = QtWidgets.QMenu()
   exitAction = menu.addAction("Exit")
 
   trayIcon.setContextMenu(menu)
   exitAction.triggered.connect(quit)
+
   trayIcon.setToolTip("tray-server")
   trayIcon.show()
+
   changePoll.appChanged.connect(lambda s,tray=trayIcon : run_per_app(tray,s))
   app_lock(trayIcon)
   run_once()
@@ -101,20 +104,24 @@ def app_lock(tray):
       try:
         fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
       except:
+        debug.error(sys.exc_info())
         QtCore.QCoreApplication.instance().quit()
         os._exit(1)
       f.write(unicode(os.getpid()))
       f.flush()
+      fcntl.flock(f, fcntl.LOCK_UN)
       f.close()
   else:
     f = open(app_lock_file,"w")
     try:
       fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except:
+      debug.error(sys.exc_info())
       QtCore.QCoreApplication.instance().quit()
       os._exit(1)
     f.write(unicode(os.getpid()))
     f.flush()
+    fcntl.flock(f, fcntl.LOCK_UN)
     f.close()
 
 
@@ -137,9 +144,13 @@ def run_once():
     except:
       debug.error(sys.exc_info())
 
+def pidgin_notify(*args):
+  debug.info(args)
+
 
 def run_per_app(tray,appdets):
   debug.info(appdets)
+  tray.showMessage("tray=server",appdets)
   if(os.path.exists(os.path.join(homeconfig,appdets))):
     try:
       p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
