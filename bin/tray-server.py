@@ -15,9 +15,9 @@ import debug
 import psutil
 import fcntl
 
-homeconfig = appdirs.user_config_dir("per-app-framework")
+homeconfig = appdirs.user_config_dir("tray-server")
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
-app_lock_file = "/tmp/per-app-framework-{0}.lock".format(os.environ['USER'])
+app_lock_file = "/tmp/tray-server-{0}.lock".format(os.environ['USER'])
 
 def receive_signal(signum, stack):
   quit()
@@ -81,7 +81,6 @@ def app_lock(tray):
   time.sleep(random.uniform(0.000,0.500))
   if(os.path.exists(app_lock_file)):
     f = open(app_lock_file,"r")
-    fcntl.flock(f, fcntl.LOCK_EX)
     pid = f.read().strip()
     f.close()
     debug.info(pid)
@@ -99,12 +98,21 @@ def app_lock(tray):
     except:
       debug.warn(sys.exc_info())
       f = open(app_lock_file,"w")
+      try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+      except:
+        QtCore.QCoreApplication.instance().quit()
+        os._exit(1)
       f.write(unicode(os.getpid()))
       f.flush()
       f.close()
   else:
     f = open(app_lock_file,"w")
-    fcntl.flock(f,fcntl.LOCK_EX)
+    try:
+      fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except:
+      QtCore.QCoreApplication.instance().quit()
+      os._exit(1)
     f.write(unicode(os.getpid()))
     f.flush()
     f.close()
