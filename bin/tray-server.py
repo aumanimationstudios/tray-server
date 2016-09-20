@@ -62,7 +62,7 @@ def main():
 
   trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
   trayIcon.activated.connect(action_triggered)
-  trayIcon.messageClicked = msg_clicked
+
   menu = QtWidgets.QMenu()
   exitAction = menu.addAction("Exit")
 
@@ -75,6 +75,7 @@ def main():
   changePoll.appChanged.connect(lambda s,tray=trayIcon : run_per_app(tray,s))
   app_lock(trayIcon)
   run_once()
+  trayIcon.messageClicked.connect(msg_clicked)
   # sys.exit(app.exec_())
   os._exit((app.exec_()))
 
@@ -149,7 +150,7 @@ def action_triggered(action_type):
   debug.info(action_type)
 
 def msg_clicked():
-  # QtWidgets.QMessageBox.information(None,"tray-server","testing msgbox",QtWidgets.QMessageBox.Ok)
+  QtWidgets.QMessageBox.information(None,"tray-server","testing msgbox",QtWidgets.QMessageBox.Ok)
   debug.info("msg clicked")
 
 
