@@ -61,7 +61,8 @@ def main():
   debug.info(os.path.join(filepath,"paf.png"))
 
   trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(os.path.join(filepath,"paf.png")), app)
-  trayIcon.messageClicked.connect(pidgin_notify)
+  trayIcon.activated.connect(action_triggered)
+  trayIcon.messageClicked = msg_clicked
   menu = QtWidgets.QMenu()
   exitAction = menu.addAction("Exit")
 
@@ -144,13 +145,17 @@ def run_once():
     except:
       debug.error(sys.exc_info())
 
-def pidgin_notify(*args):
-  debug.info(args)
+def action_triggered(action_type):
+  debug.info(action_type)
+
+def msg_clicked():
+  # QtWidgets.QMessageBox.information(None,"tray-server","testing msgbox",QtWidgets.QMessageBox.Ok)
+  debug.info("msg clicked")
 
 
 def run_per_app(tray,appdets):
   debug.info(appdets)
-  tray.showMessage("tray=server",appdets)
+  tray.showMessage("tray-server",appdets)
   if(os.path.exists(os.path.join(homeconfig,appdets))):
     try:
       p = subprocess.Popen(os.path.join(homeconfig,appdets),shell=True,stderr=subprocess.PIPE,stdout=subprocess.PIPE).communicate()[0]
