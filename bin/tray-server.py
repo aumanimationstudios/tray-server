@@ -101,7 +101,7 @@ class pidginNotify(QtCore.QThread):
         print(sys.exc_info())
 
     self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
-    self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
+    # self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
 
   def receive_msg(self, *args):
     self.msg_received.emit(args)
@@ -264,7 +264,7 @@ def run_per_app(tray,appdets):
 def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
-    tray.showMessage(args[0][1].split("@")[0],args[0][2],msecs=1000*1000,icon=QtWidgets.QSystemTrayIcon.Information)
+    tray.showMessage(args[0][1].split("@")[0],args[0][2],msecs=10000*10000,icon=QtWidgets.QSystemTrayIcon.Information)
   # tray.messageClicked.connect(messageClicked)
 
 if __name__ == '__main__':
