@@ -38,6 +38,8 @@ except:
   debug.warn(sys.exc_info())
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
 options_ui_file = os.path.join(filepath, "selectionBox.ui")
+scroll_ui_file  = os.path.join(filepath, "scrollWidget.ui")
+textBox_ui_file = os.path.join(filepath, "textBox.ui")
 config_file = os.path.join(homeconfig,"tray-server.ini")
 app_lock_file = "/tmp/tray-server-{0}.lock".format(os.environ['USER'])
 app_icon = os.path.join(filepath,"paf.png")
@@ -136,6 +138,7 @@ def main():
   pidgin = pidginNotify()
   pidgin.start()
   options_ui = uic.loadUi(options_ui_file)
+  scroll_ui = uic.loadUi(scroll_ui_file)
   update_config(options_ui)
   options_ui.pushButton_ok.clicked.connect(lambda a, s = options_ui: hide_options_ui(s,a))
   options_ui.checkBox_paf_enable.clicked.connect(lambda a, s = options_ui: write_config(s))
@@ -145,8 +148,10 @@ def main():
   trayIcon.activated.connect(lambda action, tray=trayIcon,ui=options_ui: action_triggered(action,tray,ui))
   menu = QtWidgets.QMenu()
   exitAction = menu.addAction("Exit")
+  scrollMenuAction = menu.addAction("rbhus-notifications")
   trayIcon.setContextMenu(menu)
   exitAction.triggered.connect(quit)
+  scrollMenuAction.triggered.connect(lambda tray = trayIcon, scroll_ui=scroll_ui:test_scroll_notification(tray,scroll_ui))
   trayIcon.setToolTip("tray-server")
   trayIcon.show()
   changePoll.app_changed.connect(lambda s, tray=trayIcon : run_per_app(tray, s))
@@ -242,7 +247,7 @@ def action_triggered(*args):
     update_config(args[-1])
     args[-1].raise_()
 
-    # args[-1].
+
 
 def messageClicked(*args):
   QtWidgets.QMessageBox.information(None,"tray-server","testing msgbox",QtWidgets.QMessageBox.Ok)
@@ -266,6 +271,38 @@ def notity_pidgin_received_msg(tray,*args):
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
     tray.showMessage(args[0][1].split("@")[0],args[0][2],msecs=10000*10000,icon=QtWidgets.QSystemTrayIcon.Information)
   # tray.messageClicked.connect(messageClicked)
+
+def test_scroll_notification(tray,*args):
+  args[0].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
+  clearLayout(args[0].verticalLayout_2)
+  spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+  # args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+  args[0].show()
+  screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
+  screenGeo = screenGeometry.bottomRight()
+  msgGeo =args[0].frameGeometry()
+  msgGeo.moveBottomRight(screenGeo)
+
+  # args[-1].setFocus()
+  args[0].setWindowTitle("tray-server")
+  # args[0].move(QtGui.QCursor.pos() - QtCore.QPoint(20, args[0].height()))
+  args[0].move(msgGeo.topLeft())
+  args[0].raise_()
+  textBox = []
+  for x in range(1,2):
+    textBox.append(uic.loadUi(textBox_ui_file))
+    textBox[-1].setParent(args[0])
+    args[0].verticalLayout_2.addWidget(textBox[-1])
+  args[0].verticalLayout_2.addItem(spacerItem1)
+
+def clearLayout(layout):
+  while layout.count() > 0:
+    item = layout.takeAt(0)
+    if not item:
+      continue
+    w = item.widget()
+    if w:
+      w.deleteLater()
 
 if __name__ == '__main__':
   main()
