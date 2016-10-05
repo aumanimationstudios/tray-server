@@ -139,6 +139,7 @@ def main():
   pidgin.start()
   options_ui = uic.loadUi(options_ui_file)
   scroll_ui = uic.loadUi(scroll_ui_file)
+  scroll_ui.pushButton_ok.clicked.connect(lambda a, s = scroll_ui: hide_scroll_ui(s,a))
   update_config(options_ui)
   options_ui.pushButton_ok.clicked.connect(lambda a, s = options_ui: hide_options_ui(s,a))
   options_ui.checkBox_paf_enable.clicked.connect(lambda a, s = options_ui: write_config(s))
@@ -214,6 +215,9 @@ def hide_options_ui(options_ui,arg):
   debug.info(arg)
   options_ui.hide()
 
+def hide_scroll_ui(scroll_ui,arg):
+  scroll_ui.hide()
+
 
 
 def quit():
@@ -276,17 +280,16 @@ def test_scroll_notification(tray,*args):
   args[0].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
   clearLayout(args[0].verticalLayout_2)
   spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-  # args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
   args[0].show()
+
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
   screenGeo = screenGeometry.bottomRight()
   msgGeo =args[0].frameGeometry()
   msgGeo.moveBottomRight(screenGeo)
-
-  # args[-1].setFocus()
-  args[0].setWindowTitle("tray-server")
-  # args[0].move(QtGui.QCursor.pos() - QtCore.QPoint(20, args[0].height()))
   args[0].move(msgGeo.topLeft())
+
+  args[0].setWindowTitle("tray-server")
+
   args[0].raise_()
   textBox = []
   for x in range(1,2):
@@ -294,6 +297,8 @@ def test_scroll_notification(tray,*args):
     textBox[-1].setParent(args[0])
     args[0].verticalLayout_2.addWidget(textBox[-1])
   args[0].verticalLayout_2.addItem(spacerItem1)
+
+
 
 def clearLayout(layout):
   while layout.count() > 0:
