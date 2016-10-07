@@ -12,13 +12,14 @@ import simplejson
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-a","--assetpath",dest='assPath',help='asset path')
-parser.add_argument("-p","--project",dest='project',help='asset path')
+parser.add_argument("-a","--assetpath",dest='assPath',required=True,help='asset path')
+parser.add_argument("-p","--project",dest='project',required=True,help='asset path')
 args = parser.parse_args()
 
-message_str = {"test":"testing",
-               "project":"AndePirki_se01_ep003_SavingPrivateRyan",
-               "asset":"AndePirki_se01_ep003_SavingPrivateRyan:library:sq01:sc001:anim:rig:blend",
+message_str = {
+               "test":"testing",
+               "project":args.project,
+               "asset":args.assPath,
                "run":"review"
                }
 message = simplejson.dumps(message_str)

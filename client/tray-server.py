@@ -1,24 +1,29 @@
 #!/usr/bin/env python2.7
 #-*- coding: utf-8 -*-
-
-
 __author__ = "Shrinidhi Rao"
 __license__ = "GPL"
 __email__ = "shrinidhi666@gmail.com"
 
-import sys
-import os
-from PyQt5 import QtWidgets, QtGui, QtCore, uic
-import subprocess
-import time
-import appdirs
-import signal
-import debug
-import psutil
 import ConfigParser
 import fcntl
-import dbus.mainloop.pyqt5
+import os
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+
+import appdirs
 import dbus
+import dbus.mainloop.pyqt5
+import psutil
+from PyQt5 import QtWidgets, QtGui, QtCore, uic
+
+filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
+basepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-2])
+sys.path.append(basepath)
+from lib import debug, utilsTray
+
 
 def receive_signal(signum, stack):
   quit()
@@ -36,16 +41,23 @@ try:
   os.makedirs(homeconfig)
 except:
   debug.warn(sys.exc_info())
-filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
-options_ui_file = os.path.join(filepath, "selectionBox.ui")
-scroll_ui_file  = os.path.join(filepath, "scrollWidget.ui")
-textBox_ui_file = os.path.join(filepath, "textBox.ui")
+
+
+type_dir = os.path.join(basepath,"type")
+debug.info(type_dir)
+options_ui_file = os.path.join(basepath,"lib-ui","selectionBox.ui")
+scroll_ui_file  = os.path.join(basepath,"lib-ui","scrollWidget.ui")
+textBox_ui_file = os.path.join(basepath,"lib-ui","textBox.ui")
+
 config_file = os.path.join(homeconfig,"tray-server.ini")
-app_lock_file = "/tmp/tray-server-{0}.lock".format(os.environ['USER'])
-app_icon = os.path.join(filepath,"paf.png")
-pidgin_notity_icon = os.path.join(filepath,"pidgin.png")
+app_lock_file = os.path.join(tempfile.gettempdir(),"tray-server-{0}.lock".format(os.environ['USER']))
+debug.info(app_lock_file)
+app_icon = os.path.join(basepath,"lib-ui","paf.png")
+pidgin_notity_icon = os.path.join(basepath,"lib-ui","pidgin.png")
 config_parser = ConfigParser.ConfigParser()
 options_dict = {}
+
+rbhus_notify_ids = {}
 
 def update_config(options_ui):
   if(os.path.exists(config_file)):
@@ -109,6 +121,22 @@ class pidginNotify(QtCore.QThread):
     self.msg_received.emit(args)
 
 
+class rbhusNotify(QtCore.QThread):
+  notify = QtCore.pyqtSignal(object)
+
+  def __init__(self):
+    super(rbhusNotify, self).__init__()
+
+  def run(self):
+    while(True):
+      getNotifications = utilsTray.getNotifications()
+      if(getNotifications):
+        self.notify.emit(getNotifications)
+      time.sleep(2)
+
+
+
+
 class appChangedPoll(QtCore.QThread):
   app_changed = QtCore.pyqtSignal(str)
 
@@ -137,8 +165,12 @@ def main():
   changePoll.start()
   pidgin = pidginNotify()
   pidgin.start()
+  rbhusNotifies = rbhusNotify()
+  rbhusNotifies.start()
   options_ui = uic.loadUi(options_ui_file)
   scroll_ui = uic.loadUi(scroll_ui_file)
+  scroll_ui.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
+  scroll_ui.setWindowTitle("rbhus-notifications")
   scroll_ui.pushButton_ok.clicked.connect(lambda a, s = scroll_ui: hide_scroll_ui(s,a))
   update_config(options_ui)
   options_ui.pushButton_ok.clicked.connect(lambda a, s = options_ui: hide_options_ui(s,a))
@@ -152,14 +184,14 @@ def main():
   scrollMenuAction = menu.addAction("rbhus-notifications")
   trayIcon.setContextMenu(menu)
   exitAction.triggered.connect(quit)
-  scrollMenuAction.triggered.connect(lambda tray = trayIcon, scroll_ui=scroll_ui:test_scroll_notification(tray,scroll_ui))
+  scrollMenuAction.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui))
   trayIcon.setToolTip("tray-server")
   trayIcon.show()
   changePoll.app_changed.connect(lambda s, tray=trayIcon : run_per_app(tray, s))
   pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
+  rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui,s))
   app_lock(trayIcon)
   run_once()
-  # sys.exit(app.exec_())
   os._exit((app.exec_()))
 
 
@@ -174,6 +206,7 @@ def app_lock(tray):
     debug.info(pid)
     try:
       p = psutil.Process(int(pid))
+      debug.info(p.cmdline()[1])
       if(os.path.abspath(p.cmdline()[1]) == os.path.abspath(__file__)):
         tray.showMessage('tray-server', 'Already an instance of the app is running.',msecs = 10000)
         tray.showMessage('tray-server', 'Delete the file \'{0}\' if you want to force run it'.format(app_lock_file),msecs = 10000)
@@ -229,6 +262,7 @@ def quit():
   QtCore.QCoreApplication.instance().quit()
   os._exit(0)
 
+
 def run_once():
   if(os.path.exists(os.path.join(homeconfig,"per-app-framework-default"))):
     try:
@@ -240,12 +274,8 @@ def run_once():
 def action_triggered(*args):
   debug.info(args[0])
   if(args[0] == QtWidgets.QSystemTrayIcon.Trigger):
-    # args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.X11BypassWindowManagerHint)
     args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
-
-    # args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
     args[-1].show()
-    # args[-1].setFocus()
     args[-1].setWindowTitle("tray-server")
     args[-1].move(QtGui.QCursor.pos() - QtCore.QPoint(0,args[-1].height()))
     update_config(args[-1])
@@ -274,29 +304,52 @@ def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
     tray.showMessage(args[0][1].split("@")[0],args[0][2],msecs=10000*10000,icon=QtWidgets.QSystemTrayIcon.Information)
-  # tray.messageClicked.connect(messageClicked)
 
-def test_scroll_notification(tray,*args):
-  args[0].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
-  clearLayout(args[0].verticalLayout_2)
-  spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-  args[0].show()
+def rbhus_notify(scroll_ui,*args):
+  oldno = len(rbhus_notify_ids.keys())
+  for x in args[0]:
+    if(not rbhus_notify_ids.has_key(x['id'])):
 
+      msg_box = uic.loadUi(textBox_ui_file)
+      msg_box.setParent(scroll_ui)
+      msg_box.groupBox.setTitle(x['title'])
+      msg_box.msgBox.setText(x['msg'])
+      msg_box.pushButton_open.clicked.connect(lambda s,id=x['id'],type_script=x['type_script'],type_script_args=x['type_script_args']: rbhus_notify_open_types(id,type_script,type_script_args))
+      msg_box.pushButton_done.clicked.connect(lambda s,id=x['id']: rbhus_notify_done(id))
+      scroll_ui.verticalLayout_2.addWidget(msg_box)
+      rbhus_notify_ids[x['id']] = msg_box
+      debug.info(x)
+  newno = len(rbhus_notify_ids.keys())
+  if(oldno != newno):
+    show_rbhus_notify(scroll_ui)
+
+
+def rbhus_notify_open_types(id,type_script,type_script_args):
+  type_script_exe = os.path.join(type_dir,type_script)
+  type_script_exe_with_args = type_script_exe +" "+ type_script_args
+  p = subprocess.Popen(type_script_exe_with_args,shell=True,stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+  out = p.communicate()[0]
+  if(p.returncode != 0):
+    debug.error(out)
+  else:
+    debug.info(out)
+
+
+def rbhus_notify_done(id):
+  debug.info(id)
+  rbhus_notify_ids[id].deleteLater()
+  utilsTray.seeNotification(id)
+  del(rbhus_notify_ids[id])
+
+
+def show_rbhus_notify(scroll_ui):
+  scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
   screenGeo = screenGeometry.bottomRight()
-  msgGeo =args[0].frameGeometry()
+  msgGeo =scroll_ui.frameGeometry()
   msgGeo.moveBottomRight(screenGeo)
-  args[0].move(msgGeo.topLeft())
-
-  args[0].setWindowTitle("tray-server")
-
-  args[0].raise_()
-  textBox = []
-  for x in range(1,2):
-    textBox.append(uic.loadUi(textBox_ui_file))
-    textBox[-1].setParent(args[0])
-    args[0].verticalLayout_2.addWidget(textBox[-1])
-  args[0].verticalLayout_2.addItem(spacerItem1)
+  scroll_ui.move(msgGeo.topLeft())
+  scroll_ui.raise_()
 
 
 

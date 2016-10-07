@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>314</width>
+    <width>355</width>
     <height>176</height>
    </rect>
   </property>
@@ -46,6 +46,11 @@
           <height>80</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+         </font>
+        </property>
         <property name="acceptDrops">
          <bool>false</bool>
         </property>
@@ -57,15 +62,9 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton_ok">
-          <property name="maximumSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
+         <widget class="QPushButton" name="pushButton_open">
           <property name="text">
-           <string>ok</string>
+           <string>open</string>
           </property>
          </widget>
         </item>
@@ -81,6 +80,13 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_done">
+          <property name="text">
+           <string>done</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
