@@ -83,8 +83,11 @@
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_done">
+          <property name="toolTip">
+           <string>You will never be notified about this notification</string>
+          </property>
           <property name="text">
-           <string>done</string>
+           <string>forget</string>
           </property>
          </widget>
         </item>
