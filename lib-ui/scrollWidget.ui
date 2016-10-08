@@ -511,6 +511,9 @@
      </item>
      <item>
       <widget class="QGroupBox" name="groupBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="title">
         <string>remind after</string>
        </property>
