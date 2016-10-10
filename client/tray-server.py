@@ -97,7 +97,6 @@ def write_config(option_ui):
   debug.info("writing config file - done")
 
 
-
 class pidginNotify(QtCore.QObject):
   msg_received = QtCore.pyqtSignal(object)
   not_connected = QtCore.pyqtSignal()
@@ -115,7 +114,6 @@ class pidginNotify(QtCore.QObject):
     self.dbus_loop = dbus.mainloop.pyqt5.DBusQtMainLoop(set_as_default=True)
     self.bus = dbus.SessionBus(mainloop=self.dbus_loop)
     self.connectToPidgin()
-
 
   def startListening(self):
     self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
@@ -146,7 +144,6 @@ class pidginNotify(QtCore.QObject):
         self.isAlive = False
         debug.error("re-disconnected")
 
-
   def receive_msg(self, *args):
     self.msg_received.emit(args)
 
@@ -163,8 +160,6 @@ class rbhusNotify(QtCore.QThread):
       if(getNotifications):
         self.notify.emit(getNotifications)
       time.sleep(2)
-
-
 
 
 class appChangedPoll(QtCore.QThread):
@@ -188,6 +183,7 @@ class appChangedPoll(QtCore.QThread):
                 self.app_changed.emit(unicode(y).split("=")[-1].strip().split(",")[-1].strip().strip("\"").lower())
                 lastapp = y
       time.sleep(1)
+
 
 def main():
   app = QtWidgets.QApplication(sys.argv)
@@ -221,17 +217,17 @@ def main():
   trayIcon.setToolTip("tray-server")
   trayIcon.show()
   changePoll.app_changed.connect(lambda s, tray=trayIcon : run_per_app(tray, s))
+  rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui, s))
 
   pidginConnectTimer.timeout.connect(pidgin.connectToPidgin)
   pidgin.connected.connect(pidgin.startListening)
   pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
   pidgin.not_connected.connect(lambda timeout=2000: pidginConnectTimer.start(timeout))
   pidgin.listening.connect(pidginConnectTimer.stop)
-
-  rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui,s))
   pidgin.start()
   pidginReConnectTimer.timeout.connect(pidgin.isConnected)
   pidginReConnectTimer.start(2000)
+
   app_lock(trayIcon)
   run_once()
   os._exit((app.exec_()))
