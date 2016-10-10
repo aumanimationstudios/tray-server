@@ -72,9 +72,9 @@ def update_config(options_ui):
   else:
     debug.warn(sys.exc_info())
     debug.warn("using defaults")
-    options_dict['per-app-framework'] = option_ui.checkBox_paf_enable.checkState()
-    options_dict['notify-app-changes'] = option_ui.checkBox_paf_notify.checkState()
-    options_dict['pidgin-notify'] = option_ui.checkBox_pidgin.checkState()
+    options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
+    options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
+    options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
     return(False)
 
 
@@ -98,24 +98,35 @@ def write_config(option_ui):
 
 
 
-class pidginNotify(QtCore.QThread):
+class pidginNotify(QtCore.QObject):
   msg_received = QtCore.pyqtSignal(object)
+  not_connected = QtCore.pyqtSignal()
+  connected = QtCore.pyqtSignal()
+  listening = QtCore.pyqtSignal()
 
   def __init__(self):
     super(pidginNotify, self).__init__()
+
+  def start(self):
     self.dbus_loop = dbus.mainloop.pyqt5.DBusQtMainLoop(set_as_default=True)
-
     self.bus = dbus.SessionBus(mainloop=self.dbus_loop)
-    while(True):
-      try:
-        self.purple = self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
-        break
-      except:
-        time.sleep(1)
-        print(sys.exc_info())
+    self.connectToPidgin()
 
+
+  def startListening(self):
     self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
-    # self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
+    self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
+    debug.info("started listening")
+    self.listening.emit()
+
+  def connectToPidgin(self):
+    try:
+      self.purple = self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
+      debug.info("connected to pidgin")
+      self.connected.emit()
+    except:
+      self.not_connected.emit()
+      debug.error(sys.exc_info())
 
   def receive_msg(self, *args):
     self.msg_received.emit(args)
@@ -161,10 +172,12 @@ class appChangedPoll(QtCore.QThread):
 
 def main():
   app = QtWidgets.QApplication(sys.argv)
+  pidginConnectTimer = QtCore.QTimer()
+  pidgin = pidginNotify()
+
   changePoll = appChangedPoll()
   changePoll.start()
-  pidgin = pidginNotify()
-  pidgin.start()
+
   rbhusNotifies = rbhusNotify()
   rbhusNotifies.start()
   options_ui = uic.loadUi(options_ui_file)
@@ -188,8 +201,15 @@ def main():
   trayIcon.setToolTip("tray-server")
   trayIcon.show()
   changePoll.app_changed.connect(lambda s, tray=trayIcon : run_per_app(tray, s))
+
+  pidginConnectTimer.timeout.connect(pidgin.connectToPidgin)
+  pidgin.connected.connect(pidgin.startListening)
   pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
+  pidgin.not_connected.connect(lambda timeout=1000: pidginConnectTimer.start(timeout))
+  pidgin.listening.connect(pidginConnectTimer.stop)
+
   rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui,s))
+  pidgin.start()
   app_lock(trayIcon)
   run_once()
   os._exit((app.exec_()))
