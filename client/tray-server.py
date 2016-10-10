@@ -225,7 +225,7 @@ def main():
   pidginConnectTimer.timeout.connect(pidgin.connectToPidgin)
   pidgin.connected.connect(pidgin.startListening)
   pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
-  pidgin.not_connected.connect(lambda timeout=1000: pidginConnectTimer.start(timeout))
+  pidgin.not_connected.connect(lambda timeout=2000: pidginConnectTimer.start(timeout))
   pidgin.listening.connect(pidginConnectTimer.stop)
 
   rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui,s))
