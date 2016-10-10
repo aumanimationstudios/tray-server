@@ -117,7 +117,7 @@ class pidginNotify(QtCore.QObject):
 
   def startListening(self):
     self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
-    self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
+    # self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
     debug.info("started listening")
     self.listening.emit()
 
@@ -142,6 +142,8 @@ class pidginNotify(QtCore.QObject):
         self.isAlive = True
       except:
         self.isAlive = False
+        self.purple = None
+        self.not_connected.emit()
         debug.error("re-disconnected")
 
   def receive_msg(self, *args):
@@ -224,9 +226,9 @@ def main():
   pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
   pidgin.not_connected.connect(lambda timeout=2000: pidginConnectTimer.start(timeout))
   pidgin.listening.connect(pidginConnectTimer.stop)
-  pidgin.start()
   pidginReConnectTimer.timeout.connect(pidgin.isConnected)
   pidginReConnectTimer.start(2000)
+  pidgin.start()
 
   app_lock(trayIcon)
   run_once()

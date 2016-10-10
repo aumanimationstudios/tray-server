@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/tray-server.py" afterPath="$PROJECT_DIR$/client/tray-server.py" />
     </list>
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +32,8 @@
       <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/tray-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="225" column="51" selection-start-line="225" selection-start-column="51" selection-end-line="225" selection-end-column="51" />
+            <state relative-caret-position="254">
+              <caret line="120" column="35" selection-start-line="120" selection-start-column="35" selection-end-line="120" selection-end-column="35" />
               <folding>
                 <element signature="e#135#154#0" expanded="true" />
               </folding>
@@ -766,7 +767,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476118665065</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="prototyping">
+      <created>1476119176271</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1476119176271</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1204,8 +1212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/tray-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="225" column="51" selection-start-line="225" selection-start-column="51" selection-end-line="225" selection-end-column="51" />
+        <state relative-caret-position="254">
+          <caret line="120" column="35" selection-start-line="120" selection-start-column="35" selection-end-line="120" selection-end-column="35" />
           <folding>
             <element signature="e#135#154#0" expanded="true" />
           </folding>
