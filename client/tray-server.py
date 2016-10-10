@@ -137,7 +137,7 @@ class pidginNotify(QtCore.QObject):
         self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
         if(self.isAlive == False):
           self.not_connected.emit()
-          debug.info("re-connected")
+          debug.info("re-connecting")
         debug.info("connected")
         self.isAlive = True
       except:
