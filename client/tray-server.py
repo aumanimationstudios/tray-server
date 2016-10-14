@@ -344,7 +344,8 @@ def run_per_app(tray,appdets):
 def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
-    tray.showMessage(args[0][1].split("@")[0],args[0][2],msecs=10000*10000,icon=QtWidgets.QSystemTrayIcon.Information)
+    localtime = time.localtime()
+    tray.showMessage(args[0][1].split("@")[0] +" - "+ unicode(localtime.tm_hour) +":"+ unicode(localtime.tm_min) ,args[0][2],msecs=10000*10000,icon=QtWidgets.QSystemTrayIcon.Information)
 
 def rbhus_notify(scroll_ui,*args):
   oldno = len(rbhus_notify_ids.keys())
