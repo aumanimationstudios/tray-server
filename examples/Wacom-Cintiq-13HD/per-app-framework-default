@@ -1,5 +1,5 @@
 #!/bin/sh
-/usr/bin/xsetwacom --set "Wacom Cintiq 13HD Pen stylus" MapToOutput HEAD-0
-/usr/bin/xsetwacom --set "Wacom Cintiq 13HD Pen eraser" MapToOutput HEAD-0
-/usr/bin/xsetwacom --set "Wacom Cintiq 13HD Pad pad" MapToOutput HEAD-0
-/usr/bin/xsetwacom --set "Wacom Cintiq 13HD Finger touch" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pen stylus" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pen eraser" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Finger touch" MapToOutput HEAD-0
