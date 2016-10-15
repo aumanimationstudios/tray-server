@@ -200,6 +200,8 @@ def main():
   rbhusNotifies = rbhusNotify()
   rbhusNotifies.start()
   options_ui = uic.loadUi(options_ui_file)
+  options_ui.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
+  options_ui.setWindowTitle("tray-server")
   scroll_ui = uic.loadUi(scroll_ui_file)
   scroll_ui.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
   scroll_ui.setWindowTitle("rbhus-notifications")
@@ -315,9 +317,8 @@ def run_once():
 def action_triggered(*args):
   debug.info(args[0])
   if(args[0] == QtWidgets.QSystemTrayIcon.Trigger):
-    args[-1].setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
+    args[-1].hide()
     args[-1].show()
-    args[-1].setWindowTitle("tray-server")
     args[-1].move(QtGui.QCursor.pos() - QtCore.QPoint(0,args[-1].height()))
     update_config(args[-1])
     args[-1].raise_()
@@ -354,7 +355,7 @@ def rbhus_notify(scroll_ui,*args):
 
       msg_box = uic.loadUi(textBox_ui_file)
       msg_box.setParent(scroll_ui)
-      msg_box.groupBox.setTitle(x['title'])
+      msg_box.groupBox.setTitle(x['title'] +" ({0})".format(x['created'].ctime()))
       msg_box.msgBox.setText(x['msg'])
       msg_box.pushButton_open.clicked.connect(lambda s,id=x['id'],type_script=x['type_script'],type_script_args=x['type_script_args']: rbhus_notify_open_types(id,type_script,type_script_args))
       msg_box.pushButton_done.clicked.connect(lambda s,id=x['id']: rbhus_notify_done(id))
@@ -385,6 +386,7 @@ def rbhus_notify_done(id):
 
 
 def show_rbhus_notify(scroll_ui):
+  scroll_ui.hide()
   scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
   screenGeo = screenGeometry.bottomRight()
