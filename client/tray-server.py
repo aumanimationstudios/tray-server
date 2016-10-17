@@ -352,12 +352,15 @@ def rbhus_notify(scroll_ui,*args):
   oldno = len(rbhus_notify_ids.keys())
   for x in args[0]:
     if(not rbhus_notify_ids.has_key(x['id'])):
-
       msg_box = uic.loadUi(textBox_ui_file)
       msg_box.setParent(scroll_ui)
-      msg_box.groupBox.setTitle(x['title'] +" ({0})".format(x['created'].ctime()))
+      msg_box.labelTitle.setText(x['title'])
+      msg_box.labelUsers.setText(x['fromUsers'])
+      msg_box.labelDate.setText("{0}".format(x['created'].ctime()))
       msg_box.msgBox.setText(x['msg'])
-      msg_box.pushButton_open.clicked.connect(lambda s,id=x['id'],type_script=x['type_script'],type_script_args=x['type_script_args']: rbhus_notify_open_types(id,type_script,type_script_args))
+      if(x['isChecked']):
+        msg_box.pushButton_open.setText("checked")
+      msg_box.pushButton_open.clicked.connect(lambda s,button=msg_box.pushButton_open,id=x['id'],type_script=x['type_script'],type_script_args=x['type_script_args']: rbhus_notify_open_types(id,type_script,type_script_args,button=button))
       msg_box.pushButton_done.clicked.connect(lambda s,id=x['id']: rbhus_notify_done(id))
       scroll_ui.verticalLayout_2.addWidget(msg_box)
       rbhus_notify_ids[x['id']] = msg_box
@@ -367,7 +370,7 @@ def rbhus_notify(scroll_ui,*args):
     show_rbhus_notify(scroll_ui)
 
 
-def rbhus_notify_open_types(id,type_script,type_script_args):
+def rbhus_notify_open_types(id,type_script,type_script_args,button=None):
   type_script_exe = os.path.join(type_dir,type_script)
   type_script_exe_with_args = type_script_exe +" "+ type_script_args
   p = subprocess.Popen(type_script_exe_with_args,shell=True,stderr=subprocess.PIPE, stdout=subprocess.PIPE)
@@ -376,6 +379,8 @@ def rbhus_notify_open_types(id,type_script,type_script_args):
     debug.error(out)
   else:
     debug.info(out)
+    utilsTray.markAsChecked(id)
+    button.setText("checked")
 
 
 def rbhus_notify_done(id):

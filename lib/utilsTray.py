@@ -57,5 +57,15 @@ def seeNotification(id):
     debug.error(sys.exc_info())
   return (0)
 
+
+def markAsChecked(id):
+  dbcon = dbTrayServer.dbTray()
+  try:
+    rows = dbcon.execute("update notify set isChecked=1 where id=\"" + id + "\"")
+    return (1)
+  except:
+    debug.error(sys.exc_info())
+  return (0)
+
 if(__name__ == "__main__"):
   debug.info(getNotifications())
