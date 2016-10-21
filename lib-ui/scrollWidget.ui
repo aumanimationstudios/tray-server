@@ -469,7 +469,7 @@
           <x>0</x>
           <y>0</y>
           <width>397</width>
-          <height>348</height>
+          <height>346</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2"/>
@@ -512,77 +512,22 @@
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="title">
         <string>remind after</string>
        </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QComboBox" name="comboBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <item>
-           <property name="text">
-            <string>10</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>5</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>20</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>30</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>40</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>50</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>60</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>mins</string>
+         <widget class="QTimeEdit" name="timeEdit">
+          <property name="calendarPopup">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

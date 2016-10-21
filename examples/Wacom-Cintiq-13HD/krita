@@ -4,3 +4,12 @@
 /usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" MapToOutput HEAD-0
 /usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Finger touch" MapToOutput HEAD-0
 /usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Finger touch" Gesture off
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 2 "key +b"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 3 "key +e"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 1 "key ctrl +s"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 11 "key ctrl"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 13 "key shift +"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 12 "key ["
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 10 "key ]"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 8 "key ctrl +z"
+/usr/bin/xsetwacom --set "Wacom Cintiq 13HD touch Pad pad" Button 9 "key ctrl shift +z"

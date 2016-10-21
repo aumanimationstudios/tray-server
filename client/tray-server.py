@@ -230,6 +230,8 @@ def main():
   scroll_ui.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
   scroll_ui.setWindowTitle("rbhus-notifications")
   scroll_ui.pushButton_ok.clicked.connect(lambda a, s = scroll_ui: hide_scroll_ui(s,a))
+  scroll_ui.scrollArea.verticalScrollBar().rangeChanged.connect(lambda min,max : scroll_ui.scrollArea.verticalScrollBar().setValue(max))
+  scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
   update_config(options_ui)
   options_ui.pushButton_ok.clicked.connect(lambda a, s = options_ui: hide_options_ui(s,a))
   options_ui.checkBox_paf_enable.clicked.connect(lambda a, s = options_ui: write_config(s))
@@ -415,6 +417,7 @@ def rbhus_notify_done(id):
 
 
 def show_rbhus_notify(scroll_ui):
+  scroll_ui.scrollArea.verticalScrollBar().rangeChanged.connect(lambda min, max: scroll_ui.scrollArea.verticalScrollBar().setValue(max))
   scroll_ui.hide()
   scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
