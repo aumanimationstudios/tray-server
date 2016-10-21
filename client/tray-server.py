@@ -62,12 +62,34 @@ rbhus_notify_ids = {}
 def update_config(options_ui):
   if(os.path.exists(config_file)):
     config_parser.read(config_file)
-    options_dict['per-app-framework'] = config_parser.getint("tray","per-app-framework")
+    try:
+      options_dict['per-app-framework'] = config_parser.getint("tray","per-app-framework")
+    except:
+      debug.warn(sys.exc_info())
+      options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
     options_ui.checkBox_paf_enable.setCheckState(options_dict['per-app-framework'])
-    options_dict['notify-app-changes'] = config_parser.getint("tray","notify-app-changes")
+
+    try:
+      options_dict['notify-app-changes'] = config_parser.getint("tray","notify-app-changes")
+    except:
+      debug.warn(sys.exc_info())
+      options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
     options_ui.checkBox_paf_notify.setCheckState(options_dict['notify-app-changes'])
-    options_dict['pidgin-notify'] = config_parser.getint("tray", "pidgin-notify")
+
+    try:
+      options_dict['pidgin-notify'] = config_parser.getint("tray", "pidgin-notify")
+    except:
+      debug.warn(sys.exc_info())
+      options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
     options_ui.checkBox_pidgin.setCheckState(options_dict['pidgin-notify'])
+
+    try:
+      options_dict['pidgin-notify-timeout'] = config_parser.getint("tray", "pidgin-notify-timeout")
+    except:
+      debug.warn(sys.exc_info())
+      options_dict['pidgin-notify-timeout'] = options_ui.spinBoxTimeOut.value()
+    options_ui.spinBoxTimeOut.setValue(options_dict['pidgin-notify-timeout'])
+
     return(True)
   else:
     debug.warn(sys.exc_info())
@@ -75,6 +97,7 @@ def update_config(options_ui):
     options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
     options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
     options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
+    options_dict['pidgin-notify-timeout'] = options_ui.spinBoxTimeOut.value()
     return(False)
 
 
@@ -84,6 +107,7 @@ def write_config(option_ui):
   options_dict['per-app-framework'] = option_ui.checkBox_paf_enable.checkState()
   options_dict['notify-app-changes'] = option_ui.checkBox_paf_notify.checkState()
   options_dict['pidgin-notify'] = option_ui.checkBox_pidgin.checkState()
+  options_dict['pidgin-notify-timeout'] = option_ui.spinBoxTimeOut.value()
   try:
     config_parser.add_section("tray")
   except:
@@ -346,7 +370,7 @@ def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
     localtime = time.localtime()
-    tray.showMessage(args[0][1].split("@")[0] +" - "+ unicode(localtime.tm_hour) +":"+ unicode(localtime.tm_min) ,args[0][2],msecs=1000*60,icon=QtWidgets.QSystemTrayIcon.Information)
+    tray.showMessage(args[0][1].split("@")[0] +" - "+ unicode(localtime.tm_hour) +":"+ unicode(localtime.tm_min) ,args[0][2],msecs=1000*options_dict['pidgin-notify-timeout'],icon=QtWidgets.QSystemTrayIcon.Information)
 
 def rbhus_notify(scroll_ui,*args):
   oldno = len(rbhus_notify_ids.keys())
