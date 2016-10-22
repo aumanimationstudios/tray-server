@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib-ui/scrollWidget.ui" afterPath="$PROJECT_DIR$/lib-ui/scrollWidget.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/tray-server.py" afterPath="$PROJECT_DIR$/client/tray-server.py" />
     </list>
@@ -43,8 +42,8 @@
       <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/tray-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6037">
-              <caret line="441" column="12" selection-start-line="441" selection-start-column="12" selection-end-line="441" selection-end-column="12" />
+            <state relative-caret-position="350">
+              <caret line="251" column="101" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
               <folding />
             </state>
           </provider>
@@ -947,7 +946,21 @@
       <option name="project" value="LOCAL" />
       <updated>1477038946678</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="fixing">
+      <created>1477112380460</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1477112380460</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fixing">
+      <created>1477116354671</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1477116354671</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1391,8 +1404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/tray-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6037">
-          <caret line="441" column="12" selection-start-line="441" selection-start-column="12" selection-end-line="441" selection-end-column="12" />
+        <state relative-caret-position="350">
+          <caret line="251" column="101" selection-start-line="251" selection-start-column="101" selection-end-line="251" selection-end-column="101" />
           <folding />
         </state>
       </provider>

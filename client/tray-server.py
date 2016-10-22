@@ -249,7 +249,7 @@ def main():
   scroll_menu_action = menu.addAction("rbhus-notifications")
   tray_icon.setContextMenu(menu)
   exit_action.triggered.connect(quit)
-  scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui))
+  scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui,True))
   tray_icon.setToolTip("tray-server")
   tray_icon.show()
   change_poll.app_changed.connect(lambda s, tray=tray_icon : run_per_app(tray, s))
@@ -439,11 +439,12 @@ def rbhus_notify_done(id):
   del(rbhus_notify_ids[id])
 
 
-def show_rbhus_notify(scroll_ui):
-  if(not scroll_ui.groupBoxAfterTime.isChecked()):
-    scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
-  else:
-    return(0)
+def show_rbhus_notify(scroll_ui,force_show=False):
+  if(force_show == False):
+    if(not scroll_ui.groupBoxAfterTime.isChecked()):
+      scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
+    else:
+      return(0)
   scroll_ui.hide()
   scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
