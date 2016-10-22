@@ -488,6 +488,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>ok</string>
        </property>
@@ -510,7 +516,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QGroupBox" name="groupBoxAfterTime">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -526,6 +532,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QTimeEdit" name="timeEdit">
+          <property name="displayFormat">
+           <string>h:mm:ss AP</string>
+          </property>
           <property name="calendarPopup">
            <bool>false</bool>
           </property>

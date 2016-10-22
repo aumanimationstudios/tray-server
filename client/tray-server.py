@@ -58,6 +58,8 @@ config_parser = ConfigParser.ConfigParser()
 options_dict = {}
 
 rbhus_notify_ids = {}
+afterTimeNotification = None
+
 
 def update_config(options_ui):
   if(os.path.exists(config_file)):
@@ -214,12 +216,13 @@ class appChangedPoll(QtCore.QThread):
 
 def main():
   app = QtWidgets.QApplication(sys.argv)
-  pidginConnectTimer = QtCore.QTimer()
-  pidginReConnectTimer = QtCore.QTimer()
+  pidgin_connect_timer = QtCore.QTimer()
+  pidgin_re_connect_timer = QtCore.QTimer()
+  scroll_timer = QtCore.QTimer()
   pidgin = pidginNotify()
 
-  changePoll = appChangedPoll()
-  changePoll.start()
+  change_poll = appChangedPoll()
+  change_poll.start()
 
   rbhusNotifies = rbhusNotify()
   rbhusNotifies.start()
@@ -232,38 +235,53 @@ def main():
   scroll_ui.pushButton_ok.clicked.connect(lambda a, s = scroll_ui: hide_scroll_ui(s,a))
   scroll_ui.scrollArea.verticalScrollBar().rangeChanged.connect(lambda min,max : scroll_ui.scrollArea.verticalScrollBar().setValue(max))
   scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
+  scroll_ui.timeEdit.timeChanged.connect(lambda s, scroll_ui= scroll_ui, scroll_timer=scroll_timer: start_scroll_ui_timer(scroll_timer,scroll_ui))
+  scroll_ui.groupBoxAfterTime.clicked.connect(lambda s, scroll_timer = scroll_timer, scroll_ui=scroll_ui: start_scroll_ui_timer(scroll_timer,scroll_ui))
   update_config(options_ui)
   options_ui.pushButton_ok.clicked.connect(lambda a, s = options_ui: hide_options_ui(s,a))
   options_ui.checkBox_paf_enable.clicked.connect(lambda a, s = options_ui: write_config(s))
   options_ui.checkBox_paf_notify.clicked.connect(lambda a, s=options_ui: write_config(s))
   options_ui.checkBox_pidgin.clicked.connect(lambda a, s=options_ui: write_config(s))
-  trayIcon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(app_icon), app)
-  trayIcon.activated.connect(lambda action, tray=trayIcon,ui=options_ui: action_triggered(action,tray,ui))
+  tray_icon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(app_icon), app)
+  tray_icon.activated.connect(lambda action, tray=tray_icon,ui=options_ui: action_triggered(action,tray,ui))
   menu = QtWidgets.QMenu()
-  exitAction = menu.addAction("Exit")
-  scrollMenuAction = menu.addAction("rbhus-notifications")
-  trayIcon.setContextMenu(menu)
-  exitAction.triggered.connect(quit)
-  scrollMenuAction.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui))
-  trayIcon.setToolTip("tray-server")
-  trayIcon.show()
-  changePoll.app_changed.connect(lambda s, tray=trayIcon : run_per_app(tray, s))
+  exit_action = menu.addAction("Exit")
+  scroll_menu_action = menu.addAction("rbhus-notifications")
+  tray_icon.setContextMenu(menu)
+  exit_action.triggered.connect(quit)
+  scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui))
+  tray_icon.setToolTip("tray-server")
+  tray_icon.show()
+  change_poll.app_changed.connect(lambda s, tray=tray_icon : run_per_app(tray, s))
   rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui, s))
 
-  pidginConnectTimer.timeout.connect(pidgin.connectToPidgin)
+  pidgin_connect_timer.timeout.connect(pidgin.connectToPidgin)
   pidgin.connected.connect(pidgin.startListening)
-  pidgin.msg_received.connect(lambda s, tray=trayIcon: notity_pidgin_received_msg(tray,s))
-  pidgin.not_connected.connect(lambda timeout=2000: pidginConnectTimer.start(timeout))
-  pidgin.listening.connect(pidginConnectTimer.stop)
-  pidginReConnectTimer.timeout.connect(pidgin.isConnected)
-  pidginReConnectTimer.start(2000)
+  pidgin.msg_received.connect(lambda s, tray=tray_icon: notity_pidgin_received_msg(tray,s))
+  pidgin.not_connected.connect(lambda timeout=2000: pidgin_connect_timer.start(timeout))
+  pidgin.listening.connect(pidgin_connect_timer.stop)
+  pidgin_re_connect_timer.timeout.connect(pidgin.isConnected)
+  pidgin_re_connect_timer.start(2000)
   pidgin.start()
-
-  app_lock(trayIcon)
+  scroll_timer.timeout.connect(lambda scroll_timer=scroll_timer,scroll_ui=scroll_ui: show_rbhus_notify_timeout(scroll_timer,scroll_ui))
+  app_lock(tray_icon)
   run_once()
   os._exit((app.exec_()))
 
 
+def start_scroll_ui_timer(scroll_timer,scroll_ui):
+  current_time = QtCore.QTime.currentTime()
+  secs_to_stop = current_time.secsTo(scroll_ui.timeEdit.time())
+  if(scroll_ui.groupBoxAfterTime.isChecked()):
+    if(scroll_timer.isActive()):
+      scroll_timer.stop()
+    if(secs_to_stop > 0):
+      debug.info(secs_to_stop)
+      scroll_timer.start(1000*secs_to_stop)
+
+def show_rbhus_notify_timeout(scroll_timer,scroll_ui):
+  scroll_timer.stop()
+  show_rbhus_notify(scroll_ui)
 
 def app_lock(tray):
   import random
@@ -417,7 +435,11 @@ def rbhus_notify_done(id):
 
 
 def show_rbhus_notify(scroll_ui):
-  scroll_ui.scrollArea.verticalScrollBar().rangeChanged.connect(lambda min, max: scroll_ui.scrollArea.verticalScrollBar().setValue(max))
+  if(not scroll_ui.groupBoxAfterTime.isChecked()):
+    scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
+  else:
+    if(QtCore.QTime.currentTime().secsTo(scroll_ui.timeEdit.time()) > 0):
+      return
   scroll_ui.hide()
   scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
