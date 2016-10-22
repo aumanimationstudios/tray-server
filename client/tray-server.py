@@ -278,10 +278,15 @@ def start_scroll_ui_timer(scroll_timer,scroll_ui):
     if(secs_to_stop > 0):
       debug.info(secs_to_stop)
       scroll_timer.start(1000*secs_to_stop)
+  else:
+    scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
+
 
 def show_rbhus_notify_timeout(scroll_timer,scroll_ui):
+  scroll_ui.groupBoxAfterTime.setChecked(False)
   scroll_timer.stop()
   show_rbhus_notify(scroll_ui)
+
 
 def app_lock(tray):
   import random
@@ -438,8 +443,7 @@ def show_rbhus_notify(scroll_ui):
   if(not scroll_ui.groupBoxAfterTime.isChecked()):
     scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
   else:
-    if(QtCore.QTime.currentTime().secsTo(scroll_ui.timeEdit.time()) > 0):
-      return
+    return(0)
   scroll_ui.hide()
   scroll_ui.show()
   screenGeometry = QtWidgets.QApplication.desktop().availableGeometry()
