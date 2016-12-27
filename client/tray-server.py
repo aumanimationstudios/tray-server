@@ -423,7 +423,7 @@ def rbhus_notify(scroll_ui,*args):
       rbhus_notify_ids[x['id']] = msg_box
       debug.info(x)
     else:
-      if(rbhus_notify_ids[x['id']].pushButton_open.text() != checked):
+      if(str(rbhus_notify_ids[x['id']].pushButton_open.text()) != checked):
         rbhus_notify_ids[x['id']].deleteLater()
         del(rbhus_notify_ids[x['id']])
 
@@ -443,7 +443,7 @@ def rbhus_notify(scroll_ui,*args):
         showui = True
 
   newno = len(rbhus_notify_ids.keys())
-  if(oldno != newno or showui == True):
+  if((oldno != newno) or (showui == True)):
     show_rbhus_notify(scroll_ui)
 
 
