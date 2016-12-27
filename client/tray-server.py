@@ -443,6 +443,7 @@ def rbhus_notify(scroll_ui,*args):
   newno = len(rbhus_notify_ids.keys())
   if((oldno != newno) or (showui == True)):
     show_rbhus_notify(scroll_ui)
+    showui = False
 
 
 
