@@ -245,10 +245,10 @@ def main():
   tray_icon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(app_icon), app)
   tray_icon.activated.connect(lambda action, tray=tray_icon,ui=options_ui: action_triggered(action,tray,ui))
   menu = QtWidgets.QMenu()
-  exit_action = menu.addAction("Exit")
+  # exit_action = menu.addAction("Exit")
   scroll_menu_action = menu.addAction("rbhus-notifications")
   tray_icon.setContextMenu(menu)
-  exit_action.triggered.connect(quit)
+  # exit_action.triggered.connect(quit)
   scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui,True))
   tray_icon.setToolTip("tray-server")
   tray_icon.show()
@@ -399,7 +399,15 @@ def notity_pidgin_received_msg(tray,*args):
 
 def rbhus_notify(scroll_ui,*args):
   oldno = len(rbhus_notify_ids.keys())
+  showui = False
+
   for x in args[0]:
+    checked = "checked"
+    if(x['isChecked']):
+      checked = "checked"
+    else:
+      checked = "open"
+
     if(not rbhus_notify_ids.has_key(x['id'])):
       msg_box = uic.loadUi(textBox_ui_file)
       msg_box.setParent(scroll_ui)
@@ -414,9 +422,28 @@ def rbhus_notify(scroll_ui,*args):
       scroll_ui.verticalLayout_2.addWidget(msg_box)
       rbhus_notify_ids[x['id']] = msg_box
       debug.info(x)
+    else:
+      if(rbhus_notify_ids[x['id']].pushButton_open.text() != checked):
+        del(rbhus_notify_ids[id])
+        msg_box = uic.loadUi(textBox_ui_file)
+        msg_box.setParent(scroll_ui)
+        msg_box.labelTitle.setText(x['title'])
+        msg_box.labelUsers.setText(x['fromUsers'])
+        msg_box.labelDate.setText("{0}".format(x['created'].ctime()))
+        msg_box.msgBox.setText(x['msg'])
+        if (x['isChecked']):
+          msg_box.pushButton_open.setText("checked")
+        msg_box.pushButton_open.clicked.connect(lambda s, button=msg_box.pushButton_open, id=x['id'], type_script=x['type_script'], type_script_args=x['type_script_args']: rbhus_notify_open_types(id, type_script, type_script_args, button=button))
+        msg_box.pushButton_done.clicked.connect(lambda s, id=x['id']: rbhus_notify_done(id))
+        scroll_ui.verticalLayout_2.addWidget(msg_box)
+        rbhus_notify_ids[x['id']] = msg_box
+        debug.info(x)
+        showui = True
+
   newno = len(rbhus_notify_ids.keys())
-  if(oldno != newno):
+  if(oldno != newno or showui == True):
     show_rbhus_notify(scroll_ui)
+
 
 
 def rbhus_notify_open_types(id,type_script,type_script_args,button=None):

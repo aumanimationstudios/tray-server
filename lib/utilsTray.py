@@ -27,15 +27,6 @@ if(sys.platform.find("linux") >= 0):
   except:
     username = "nobody"
 
-def addNotifications(toUser,title,msg,type_script,type_script_args):
-  dbcon = dbTrayServer.dbTray()
-  id = unicode(uuid.uuid4())
-  try:
-    dbcon.execute("insert into notify (id,title,msg,type_script,type_script_args,toUsers,fromUsers) values (\""+ id +"\",\""+ title +"\",\""+ msg +"\",\""+ type_script +"\",\""+ type_script_args +"\",\""+ toUser +"\",\""+ username +"\")")
-  except:
-    debug.error(sys.exc_info())
-
-
 
 def getNotifications():
   dbcon = dbTrayServer.dbTray()
