@@ -425,8 +425,6 @@ def rbhus_notify(scroll_ui,*args):
     else:
       if(str(rbhus_notify_ids[x['id']].pushButton_open.text()) != checked):
         rbhus_notify_ids[x['id']].deleteLater()
-        del(rbhus_notify_ids[x['id']])
-
         msg_box = uic.loadUi(textBox_ui_file)
         msg_box.setParent(scroll_ui)
         msg_box.labelTitle.setText(x['title'])
