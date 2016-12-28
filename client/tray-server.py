@@ -355,6 +355,7 @@ def quit():
   os._exit(0)
 
 
+
 def run_once():
   if(os.path.exists(os.path.join(homeconfig,"per-app-framework-default"))):
     try:
@@ -362,6 +363,8 @@ def run_once():
       debug.info(p)
     except:
       debug.error(sys.exc_info())
+
+
 
 def action_triggered(*args):
   debug.info(args[0])
@@ -379,6 +382,7 @@ def messageClicked(*args):
   debug.info(args)
 
 
+
 def run_per_app(tray,appdets):
   debug.info(appdets)
   if (options_dict['notify-app-changes'] == QtCore.Qt.Checked):
@@ -391,11 +395,15 @@ def run_per_app(tray,appdets):
       except:
         debug.error(sys.exc_info())
 
+
+
 def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
     localtime = time.localtime()
     tray.showMessage(args[0][1].split("@")[0] +" - "+ unicode(localtime.tm_hour) +":"+ unicode(localtime.tm_min) ,args[0][2],msecs=1000*options_dict['pidgin-notify-timeout'],icon=QtWidgets.QSystemTrayIcon.Information)
+
+
 
 def rbhus_notify(scroll_ui,*args):
   oldno = len(rbhus_notify_ids.keys())
@@ -460,11 +468,13 @@ def rbhus_notify_open_types(id,type_script,type_script_args,button=None):
     button.setText("checked")
 
 
+
 def rbhus_notify_done(id):
   debug.info(id)
   rbhus_notify_ids[id].deleteLater()
   utilsTray.seeNotification(id)
   del(rbhus_notify_ids[id])
+
 
 
 def show_rbhus_notify(scroll_ui,force_show=False):
