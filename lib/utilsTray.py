@@ -10,6 +10,7 @@ import sys
 import uuid
 import debug
 import MySQLdb
+import socket
 
 
 
@@ -57,6 +58,26 @@ def markAsChecked(id):
   except:
     debug.error(sys.exc_info())
   return (0)
+
+
+def updateUserData():
+  dbcon = dbTrayServer.dbTray()
+  hostname = socket.gethostname()
+  try:
+    dbcon.execute("insert into users (user,host) values (\""+ username +"\",\""+ hostname +"\") "
+                  "on duplicate key update "
+                  "host=\""+ hostname +"\", "
+                  "lastUpdated=now()")
+  except:
+    debug.error(sys.exc_info())
+
+def deleteUserData():
+  dbcon = dbTrayServer.dbTray()
+  try:
+    dbcon.execute("delete from users where user=\""+ username +"\"")
+  except:
+    debug.error(sys.exc_info())
+
 
 if(__name__ == "__main__"):
   debug.info(getNotifications())

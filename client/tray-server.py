@@ -32,6 +32,7 @@ signal.signal(signal.SIGTERM, receive_signal)
 signal.signal(signal.SIGINT, receive_signal)
 signal.signal(signal.SIGABRT, receive_signal)
 signal.signal(signal.SIGHUP, receive_signal)
+signal.signal(signal.SIGSEGV, receive_signal)
 
 
 
@@ -217,6 +218,7 @@ class appChangedPoll(QtCore.QThread):
 def main():
   app = QtWidgets.QApplication(sys.argv)
   pidgin_connect_timer = QtCore.QTimer()
+  user_data_update_timer = QtCore.QTimer()
   pidgin_re_connect_timer = QtCore.QTimer()
   scroll_timer = QtCore.QTimer()
   pidgin = pidginNotify()
@@ -263,6 +265,10 @@ def main():
   pidgin_re_connect_timer.timeout.connect(pidgin.isConnected)
   pidgin_re_connect_timer.start(2000)
   pidgin.start()
+
+  user_data_update_timer.timeout.connect(utilsTray.updateUserData)
+  user_data_update_timer.start(10000)
+
   scroll_timer.timeout.connect(lambda scroll_timer=scroll_timer,scroll_ui=scroll_ui: show_rbhus_notify_timeout(scroll_timer,scroll_ui))
   app_lock(tray_icon)
   run_once()
@@ -351,6 +357,7 @@ def quit():
     os.remove(app_lock_file)
   except:
     debug.error(sys.exc_info())
+  utilsTray.deleteUserData()
   QtCore.QCoreApplication.instance().quit()
   os._exit(0)
 
@@ -363,6 +370,7 @@ def run_once():
       debug.info(p)
     except:
       debug.error(sys.exc_info())
+  utilsTray.updateUserData()
 
 
 
