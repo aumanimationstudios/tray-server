@@ -430,7 +430,6 @@ def rbhus_notify(scroll_ui,*args):
   showui = False
 
   for x in args[0]:
-    debug.debug(type(x['isChecked']))
     checked = "checked"
     if(x['isChecked']):
       checked = "checked"
