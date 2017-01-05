@@ -189,7 +189,7 @@ class rbhusNotify(QtCore.QThread):
       getNotifications = utilsTray.getNotifications()
       if(getNotifications):
         self.notify.emit(getNotifications)
-      time.sleep(2)
+      time.sleep(5)
 
 
 class appChangedPoll(QtCore.QThread):
@@ -289,8 +289,8 @@ def start_scroll_ui_timer(scroll_timer,scroll_ui):
 
 
 def show_rbhus_notify_timeout(scroll_timer,scroll_ui):
-  scroll_ui.groupBoxAfterTime.setChecked(False)
   scroll_timer.stop()
+  scroll_ui.groupBoxAfterTime.setChecked(False)
   show_rbhus_notify(scroll_ui)
 
 
@@ -421,11 +421,11 @@ def notity_pidgin_received_msg(tray,*args):
 
 
 def rbhus_notify(scroll_ui,*args):
-  global inRbhusNotify
-  global rbhus_notify_ids
-  if(inRbhusNotify):
-    return
-  inRbhusNotify = True
+  # global inRbhusNotify
+  # global rbhus_notify_ids
+  # if(inRbhusNotify):
+  #   return
+  # inRbhusNotify = True
   oldno = len(rbhus_notify_ids.keys())
   showui = False
 
@@ -471,9 +471,10 @@ def rbhus_notify(scroll_ui,*args):
 
   newno = len(rbhus_notify_ids.keys())
   if((oldno != newno) or (showui == True)):
-    show_rbhus_notify(scroll_ui)
     showui = False
-  inRbhusNotify = False
+    show_rbhus_notify(scroll_ui)
+
+  # inRbhusNotify = False
 
 
 
