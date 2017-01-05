@@ -49,7 +49,7 @@ debug.info(type_dir)
 options_ui_file = os.path.join(basepath,"lib-ui","selectionBox.ui")
 scroll_ui_file  = os.path.join(basepath,"lib-ui","scrollWidget.ui")
 textBox_ui_file = os.path.join(basepath,"lib-ui","textBox.ui")
-
+userList_file = os.path.join(basepath,"tools","userList.py")
 config_file = os.path.join(homeconfig,"tray-server.ini")
 app_lock_file = os.path.join(tempfile.gettempdir(),"tray-server-{0}.lock".format(os.environ['USER']))
 debug.info(app_lock_file)
@@ -247,10 +247,10 @@ def main():
   tray_icon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(app_icon), app)
   tray_icon.activated.connect(lambda action, tray=tray_icon,ui=options_ui: action_triggered(action,tray,ui))
   menu = QtWidgets.QMenu()
-  # exit_action = menu.addAction("Exit")
+  user_list = menu.addAction("users")
   scroll_menu_action = menu.addAction("rbhus-notifications")
   tray_icon.setContextMenu(menu)
-  # exit_action.triggered.connect(quit)
+  user_list.triggered.connect(userList)
   scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui,True))
   tray_icon.setToolTip("tray-server")
   tray_icon.show()
@@ -373,6 +373,13 @@ def run_once():
   utilsTray.updateUserData()
 
 
+def userList():
+  userList_cmd = userList_file +" --ui"
+  try:
+    p = subprocess.Popen(userList_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    debug.info(p)
+  except:
+    debug.error(sys.exc_info())
 
 def action_triggered(*args):
   debug.info(args[0])

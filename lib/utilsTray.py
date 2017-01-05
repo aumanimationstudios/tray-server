@@ -79,5 +79,17 @@ def deleteUserData():
     debug.error(sys.exc_info())
 
 
+def getUsers():
+  dbcon = dbTrayServer.dbTray()
+  try:
+    rows = dbcon.execute("select * from users", dictionary=True)
+    if (rows):
+      if (not isinstance(rows, int)):
+        return (rows)
+  except:
+    debug.error(sys.exc_info())
+  return (0)
+
+
 if(__name__ == "__main__"):
   debug.info(getNotifications())
