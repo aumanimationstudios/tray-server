@@ -445,10 +445,10 @@ def rbhus_notify(scroll_ui,*args):
       msg_box.msgBox.setText(x['msg'])
       if(x['isChecked']):
         msg_box.pushButton_open.setText("checked")
-        msg_box.isChecked = True
+        msg_box.isOpenChecked = True
       else:
         msg_box.pushButton_open.setText("open")
-        msg_box.isChecked = False
+        msg_box.isOpenChecked = False
       msg_box.pushButton_open.clicked.connect(lambda s,button=msg_box.pushButton_open,id=x['id'],type_script=x['type_script'],type_script_args=x['type_script_args']: rbhus_notify_open_types(id,type_script,type_script_args,button=button))
       msg_box.pushButton_done.clicked.connect(lambda s,id=x['id']: rbhus_notify_done(id))
       scroll_ui.verticalLayout_2.addWidget(msg_box)
@@ -456,7 +456,7 @@ def rbhus_notify(scroll_ui,*args):
       debug.info(x)
     else:
       debug.info(rbhus_notify_ids[x['id']].isChecked)
-      if(rbhus_notify_ids[x['id']].isChecked != checked):
+      if(rbhus_notify_ids[x['id']].isOpenChecked != checked):
         rbhus_notify_ids[x['id']].deleteLater()
         msg_box = uic.loadUi(textBox_ui_file)
         msg_box.setParent(scroll_ui)
@@ -466,10 +466,10 @@ def rbhus_notify(scroll_ui,*args):
         msg_box.msgBox.setText(x['msg'])
         if (x['isChecked']):
           msg_box.pushButton_open.setText("checked")
-          msg_box.isChecked = True
+          msg_box.isOpenChecked = True
         else:
           msg_box.pushButton_open.setText("open")
-          msg_box.isChecked = False
+          msg_box.isOpenChecked = False
         msg_box.pushButton_open.clicked.connect(lambda s, button=msg_box.pushButton_open, id=x['id'], type_script=x['type_script'], type_script_args=x['type_script_args']: rbhus_notify_open_types(id, type_script, type_script_args, button=button))
         msg_box.pushButton_done.clicked.connect(lambda s, id=x['id']: rbhus_notify_done(id))
         scroll_ui.verticalLayout_2.addWidget(msg_box)
