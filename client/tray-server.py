@@ -421,11 +421,6 @@ def notity_pidgin_received_msg(tray,*args):
 
 
 def rbhus_notify(scroll_ui,*args):
-  # global inRbhusNotify
-  # global rbhus_notify_ids
-  # if(inRbhusNotify):
-  #   return
-  # inRbhusNotify = True
   oldno = len(rbhus_notify_ids.keys())
   showui = False
 
@@ -481,8 +476,6 @@ def rbhus_notify(scroll_ui,*args):
   if((oldno != newno) or (showui == True)):
     showui = False
     show_rbhus_notify(scroll_ui)
-
-  # inRbhusNotify = False
 
 
 
