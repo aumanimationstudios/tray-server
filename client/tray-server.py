@@ -60,7 +60,7 @@ options_dict = {}
 
 rbhus_notify_ids = {}
 afterTimeNotification = None
-
+inRbhusNotify = False
 
 def update_config(options_ui):
   if(os.path.exists(config_file)):
@@ -421,6 +421,9 @@ def notity_pidgin_received_msg(tray,*args):
 
 
 def rbhus_notify(scroll_ui,*args):
+  if(inRbhusNotify):
+    return
+  inRbhusNotify = True
   oldno = len(rbhus_notify_ids.keys())
   showui = False
 
@@ -468,6 +471,7 @@ def rbhus_notify(scroll_ui,*args):
   if((oldno != newno) or (showui == True)):
     show_rbhus_notify(scroll_ui)
     showui = False
+  inRbhusNotify = False
 
 
 
