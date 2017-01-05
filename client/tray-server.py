@@ -421,6 +421,7 @@ def notity_pidgin_received_msg(tray,*args):
 
 
 def rbhus_notify(scroll_ui,*args):
+  global inRbhusNotify
   if(inRbhusNotify):
     return
   inRbhusNotify = True

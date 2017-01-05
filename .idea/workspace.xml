@@ -131,8 +131,8 @@
       <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/tray-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="847">
-              <caret line="473" column="23" lean-forward="true" selection-start-line="473" selection-start-column="23" selection-end-line="473" selection-end-column="23" />
+            <state relative-caret-position="287">
+              <caret line="423" column="22" lean-forward="false" selection-start-line="423" selection-start-column="22" selection-end-line="423" selection-end-column="22" />
               <folding>
                 <element signature="e#135#154#0" expanded="true" />
               </folding>
@@ -708,13 +708,6 @@
       <option name="presentableId" value="Default" />
       <updated>1472634694475</updated>
     </task>
-    <task id="LOCAL-00006" summary="prototyping">
-      <created>1474360048980</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1474360048980</updated>
-    </task>
     <task id="LOCAL-00007" summary="prototyping">
       <created>1474363189147</created>
       <option name="number" value="00007" />
@@ -1051,7 +1044,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483588135998</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="fixing">
+      <created>1483588409782</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1483588409782</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1517,8 +1517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/tray-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="847">
-          <caret line="473" column="23" lean-forward="true" selection-start-line="473" selection-start-column="23" selection-end-line="473" selection-end-column="23" />
+        <state relative-caret-position="287">
+          <caret line="423" column="22" lean-forward="false" selection-start-line="423" selection-start-column="22" selection-end-line="423" selection-end-column="22" />
           <folding>
             <element signature="e#135#154#0" expanded="true" />
           </folding>
