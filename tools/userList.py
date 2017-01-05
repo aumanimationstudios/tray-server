@@ -41,9 +41,11 @@ if(users):
     ui.setWindowTitle("users list")
     ui.tableWidget.setRowCount(len(users))
     ui.tableWidget.setColumnCount(2)
+    rowCount = 0
     for x in users:
-      ui.tableWidget.setItem(0,0,QtWidgets.QTableWidgetItem(x['user']))
-      ui.tableWidget.setItem(0,1, QtWidgets.QTableWidgetItem(x['host']))
+      ui.tableWidget.setItem(rowCount,0,QtWidgets.QTableWidgetItem(x['user']))
+      ui.tableWidget.setItem(rowCount,1, QtWidgets.QTableWidgetItem(x['host']))
+      rowCount += 1
     ui.show()
     sys.exit(app.exec_())
 
