@@ -56,8 +56,8 @@
       <file leaf-file-name="utilsTray.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/utilsTray.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="90" column="12" lean-forward="true" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+            <state relative-caret-position="1512">
+              <caret line="90" column="12" lean-forward="false" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
               <folding>
                 <element signature="e#133#152#0" expanded="true" />
                 <marker date="1483432345245" expanded="true" signature="551:625" ph="select * fro... notify" />
@@ -67,21 +67,6 @@
                 <marker date="1483432345245" expanded="true" signature="1307:1347" ph="insert into users... " />
                 <marker date="1483432345245" expanded="true" signature="1307:1360" ph="insert into users... " />
                 <marker date="1483432345245" expanded="true" signature="1307:1366" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1383" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1428" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1455" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1457" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1473" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1474" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1513" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1307:1515" ph="insert into users... " />
-                <marker date="1483432345245" expanded="true" signature="1639:1668" ph="delete from " />
-                <marker date="1483432345245" expanded="true" signature="1639:1670" ph="delete from " />
-                <marker date="1483432345245" expanded="true" signature="1639:1671" ph="delete from " />
-                <marker date="1483432345245" expanded="true" signature="1639:1686" ph="delete from " />
-                <marker date="1483432345245" expanded="true" signature="1639:1688" ph="delete from " />
-                <marker date="1483432345245" expanded="true" signature="1814:1828" ph="select * fro... notify" />
-                <marker date="1483432345245" expanded="true" signature="1814:1833" ph="select * fro... users" />
               </folding>
             </state>
           </provider>
@@ -90,8 +75,8 @@
       <file leaf-file-name="userList.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tools/userList.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+            <state relative-caret-position="649">
+              <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
               <folding>
                 <element signature="e#133#143#0" expanded="true" />
               </folding>
@@ -112,7 +97,7 @@
       <file leaf-file-name="dbTrayServer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dbTrayServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
+            <state relative-caret-position="1368">
               <caret line="83" column="21" lean-forward="false" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
               <folding>
                 <element signature="e#133#147#0" expanded="true" />
@@ -134,8 +119,8 @@
       <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/tray-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="295" column="0" lean-forward="true" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+            <state relative-caret-position="493">
+              <caret line="452" column="56" lean-forward="false" selection-start-line="452" selection-start-column="56" selection-end-line="452" selection-end-column="56" />
               <folding>
                 <element signature="e#135#154#0" expanded="true" />
               </folding>
@@ -711,13 +696,6 @@
       <option name="presentableId" value="Default" />
       <updated>1472634694475</updated>
     </task>
-    <task id="LOCAL-00016" summary="prototyping">
-      <created>1475836600463</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1475836600463</updated>
-    </task>
     <task id="LOCAL-00017" summary="prototyping">
       <created>1475840920133</created>
       <option name="number" value="00017" />
@@ -1054,32 +1032,39 @@
       <option name="project" value="LOCAL" />
       <updated>1483594295969</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="fixing">
+      <created>1483596352182</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1483596352182</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1680" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25703794" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26009792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19708847" sideWeight="0.5097919" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1612542" sideWeight="0.4902081" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20604703" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1612542" sideWeight="0.4902081" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1113,7 +1098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,7 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1396,7 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1404,7 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1412,9 +1392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
           <caret line="51" column="5" lean-forward="false" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-          <folding>
-            <element signature="e#133#143#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1428,7 +1405,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/dbTrayServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="1368">
           <caret line="83" column="21" lean-forward="false" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
           <folding>
             <element signature="e#133#147#0" expanded="true" />
@@ -1454,8 +1431,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/utilsTray.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="90" column="12" lean-forward="true" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
+        <state relative-caret-position="1512">
+          <caret line="90" column="12" lean-forward="false" selection-start-line="90" selection-start-column="12" selection-end-line="90" selection-end-column="12" />
           <folding>
             <element signature="e#133#152#0" expanded="true" />
             <marker date="1483432345245" expanded="true" signature="551:625" ph="select * fro... notify" />
@@ -1465,21 +1442,6 @@
             <marker date="1483432345245" expanded="true" signature="1307:1347" ph="insert into users... " />
             <marker date="1483432345245" expanded="true" signature="1307:1360" ph="insert into users... " />
             <marker date="1483432345245" expanded="true" signature="1307:1366" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1383" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1428" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1455" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1457" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1473" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1474" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1513" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1307:1515" ph="insert into users... " />
-            <marker date="1483432345245" expanded="true" signature="1639:1668" ph="delete from " />
-            <marker date="1483432345245" expanded="true" signature="1639:1670" ph="delete from " />
-            <marker date="1483432345245" expanded="true" signature="1639:1671" ph="delete from " />
-            <marker date="1483432345245" expanded="true" signature="1639:1686" ph="delete from " />
-            <marker date="1483432345245" expanded="true" signature="1639:1688" ph="delete from " />
-            <marker date="1483432345245" expanded="true" signature="1814:1828" ph="select * fro... notify" />
-            <marker date="1483432345245" expanded="true" signature="1814:1833" ph="select * fro... users" />
           </folding>
         </state>
       </provider>
@@ -1510,8 +1472,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/userList.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state relative-caret-position="649">
+          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
             <element signature="e#133#143#0" expanded="true" />
           </folding>
@@ -1520,8 +1482,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/tray-server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="295" column="0" lean-forward="true" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+        <state relative-caret-position="493">
+          <caret line="452" column="56" lean-forward="false" selection-start-line="452" selection-start-column="56" selection-end-line="452" selection-end-column="56" />
           <folding>
             <element signature="e#135#154#0" expanded="true" />
           </folding>
