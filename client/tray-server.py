@@ -192,6 +192,15 @@ class rbhusNotify(QtCore.QThread):
       time.sleep(5)
 
 
+
+class updateUserData(QtCore.QThread):
+  def __init__(self):
+    super(updateUserData,self).__init__()
+
+  def run(self):
+    utilsTray.updateUserData()
+    time.sleep(60)
+
 class appChangedPoll(QtCore.QThread):
   app_changed = QtCore.pyqtSignal(str)
 
@@ -228,6 +237,8 @@ def main():
 
   rbhusNotifies = rbhusNotify()
   rbhusNotifies.start()
+  update_user = updateUserData()
+  update_user.start()
   options_ui = uic.loadUi(options_ui_file)
   options_ui.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.FramelessWindowHint)
   options_ui.setWindowTitle("tray-server")
