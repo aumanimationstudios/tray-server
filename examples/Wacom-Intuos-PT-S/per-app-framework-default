@@ -1,0 +1,7 @@
+#!/bin/sh
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Pen stylus" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Pen eraser" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Pad pad" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" Gesture off
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" touch off
