@@ -62,17 +62,40 @@ def markAsChecked(id):
 
 def updateUserData():
   dbcon = dbTrayServer.dbTray()
-  hostname = socket.gethostname()
   try:
-    dbcon.execute("insert into users (user,host) values (\""+ username +"\",\""+ hostname +"\") "
-                  "on duplicate key update "
-                  "host=\""+ hostname +"\", "
-                  "lastUpdated=now()")
+    hostname = socket.gethostname()
   except:
     debug.error(sys.exc_info())
+    return(0)
+  if(hostname.find("localhost") >= 0):
+    return(0)
+  try:
+    dbcon.execute("insert into users (user,host) values (\""+ username +"\",\""+ hostname +"\") ")
+  except:
+    try:
+      dbcon.execute("delete from users where host=\""+ hostname +"\"")
+    except:
+      debug.error(sys.exc_info())
+    try:
+      dbcon.execute("delete from users where user=\"" + username + "\"")
+    except:
+      debug.error(sys.exc_info())
+    try:
+      dbcon.execute("insert into users (user,host) values (\"" + username + "\",\"" + hostname + "\") ")
+    except:
+      debug.error(sys.exc_info())
 
 def deleteUserData():
   dbcon = dbTrayServer.dbTray()
+  try:
+    hostname = socket.gethostname()
+  except:
+    debug.error(sys.exc_info())
+    return(0)
+  try:
+    dbcon.execute("delete from users where host=\"" + hostname + "\"")
+  except:
+    debug.error(sys.exc_info())
   try:
     dbcon.execute("delete from users where user=\""+ username +"\"")
   except:
