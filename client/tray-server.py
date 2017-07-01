@@ -15,7 +15,7 @@ import time
 
 import appdirs
 import dbus
-# import dbus.mainloop.pyqt5
+import dbus.mainloop.pyqt5
 import psutil
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 
@@ -124,58 +124,58 @@ def write_config(option_ui):
   debug.info("writing config file - done")
 
 
-# class pidginNotify(QtCore.QObject):
-#   msg_received = QtCore.pyqtSignal(object)
-#   not_connected = QtCore.pyqtSignal()
-#   connected = QtCore.pyqtSignal()
-#   listening = QtCore.pyqtSignal()
-#
-#   def __init__(self):
-#     super(pidginNotify, self).__init__()
-#     self.dbus_loop = None
-#     self.bus = None
-#     self.purple = None
-#     self.isAlive = False
-#
-#   def start(self):
-#     self.dbus_loop = dbus.mainloop.pyqt5.DBusQtMainLoop(set_as_default=True)
-#     self.bus = dbus.SessionBus(mainloop=self.dbus_loop)
-#     self.connectToPidgin()
-#
-#   def startListening(self):
-#     self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
-#     # self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
-#     debug.info("started listening")
-#     self.listening.emit()
-#
-#   def connectToPidgin(self):
-#     try:
-#       self.purple = self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
-#
-#       debug.info("connected to pidgin")
-#       self.isAlive = True
-#       self.connected.emit()
-#     except:
-#       self.not_connected.emit()
-#       debug.error(sys.exc_info())
-#
-#   def isConnected(self):
-#     if(self.purple):
-#       try:
-#         self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
-#         if(self.isAlive == False):
-#           self.not_connected.emit()
-#           debug.info("re-connecting")
-#         debug.info("connected")
-#         self.isAlive = True
-#       except:
-#         self.isAlive = False
-#         self.purple = None
-#         self.not_connected.emit()
-#         debug.error("re-disconnected")
-#
-#   def receive_msg(self, *args):
-#     self.msg_received.emit(args)
+class pidginNotify(QtCore.QObject):
+  msg_received = QtCore.pyqtSignal(object)
+  not_connected = QtCore.pyqtSignal()
+  connected = QtCore.pyqtSignal()
+  listening = QtCore.pyqtSignal()
+
+  def __init__(self):
+    super(pidginNotify, self).__init__()
+    self.dbus_loop = None
+    self.bus = None
+    self.purple = None
+    self.isAlive = False
+
+  def start(self):
+    self.dbus_loop = dbus.mainloop.pyqt5.DBusQtMainLoop(set_as_default=True)
+    self.bus = dbus.SessionBus(mainloop=self.dbus_loop)
+    self.connectToPidgin()
+
+  def startListening(self):
+    self.purple.connect_to_signal("ReceivedImMsg", self.receive_msg)
+    # self.purple.connect_to_signal("SendingImMsg", self.receive_msg)
+    debug.info("started listening")
+    self.listening.emit()
+
+  def connectToPidgin(self):
+    try:
+      self.purple = self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
+
+      debug.info("connected to pidgin")
+      self.isAlive = True
+      self.connected.emit()
+    except:
+      self.not_connected.emit()
+      debug.error(sys.exc_info())
+
+  def isConnected(self):
+    if(self.purple):
+      try:
+        self.bus.get_object("im.pidgin.purple.PurpleService", "/im/pidgin/purple/PurpleObject")
+        if(self.isAlive == False):
+          self.not_connected.emit()
+          debug.info("re-connecting")
+        debug.info("connected")
+        self.isAlive = True
+      except:
+        self.isAlive = False
+        self.purple = None
+        self.not_connected.emit()
+        debug.error("re-disconnected")
+
+  def receive_msg(self, *args):
+    self.msg_received.emit(args)
 
 
 class rbhusNotify(QtCore.QThread):
@@ -226,11 +226,11 @@ class appChangedPoll(QtCore.QThread):
 
 def main():
   app = QtWidgets.QApplication(sys.argv)
-  # pidgin_connect_timer = QtCore.QTimer()
+  pidgin_connect_timer = QtCore.QTimer()
   user_data_update_timer = QtCore.QTimer()
-  # pidgin_re_connect_timer = QtCore.QTimer()
+  pidgin_re_connect_timer = QtCore.QTimer()
   scroll_timer = QtCore.QTimer()
-  # pidgin = pidginNotify()
+  pidgin = pidginNotify()
 
   change_poll = appChangedPoll()
   change_poll.start()
@@ -268,14 +268,14 @@ def main():
   change_poll.app_changed.connect(lambda s, tray=tray_icon : run_per_app(tray, s))
   rbhusNotifies.notify.connect(lambda s, scroll_ui=scroll_ui: rbhus_notify(scroll_ui, s))
 
-  # pidgin_connect_timer.timeout.connect(pidgin.connectToPidgin)
-  # pidgin.connected.connect(pidgin.startListening)
-  # pidgin.msg_received.connect(lambda s, tray=tray_icon: notity_pidgin_received_msg(tray,s))
-  # pidgin.not_connected.connect(lambda timeout=2000: pidgin_connect_timer.start(timeout))
-  # pidgin.listening.connect(pidgin_connect_timer.stop)
-  # pidgin_re_connect_timer.timeout.connect(pidgin.isConnected)
-  # pidgin_re_connect_timer.start(2000)
-  # pidgin.start()
+  pidgin_connect_timer.timeout.connect(pidgin.connectToPidgin)
+  pidgin.connected.connect(pidgin.startListening)
+  pidgin.msg_received.connect(lambda s, tray=tray_icon: notity_pidgin_received_msg(tray,s))
+  pidgin.not_connected.connect(lambda timeout=2000: pidgin_connect_timer.start(timeout))
+  pidgin.listening.connect(pidgin_connect_timer.stop)
+  pidgin_re_connect_timer.timeout.connect(pidgin.isConnected)
+  pidgin_re_connect_timer.start(2000)
+  pidgin.start()
 
   user_data_update_timer.timeout.connect(utilsTray.updateUserData)
   user_data_update_timer.start(10000)
