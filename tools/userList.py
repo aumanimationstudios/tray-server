@@ -31,7 +31,7 @@ args = parser.parse_args()
 users = lib.utilsTray.getUsers()
 if(users):
   for x in users:
-    lib.debug.debug(x)
+    lib.debug.info(x)
 
   if(args.ui):
     app = QtWidgets.QApplication(sys.argv)
