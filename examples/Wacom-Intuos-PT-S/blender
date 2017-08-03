@@ -5,3 +5,5 @@
 /usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" MapToOutput HEAD-0
 /usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" Gesture off
 /usr/bin/xsetwacom --set "Wacom Intuos PT S Finger touch" touch off
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Pad pad" Button 8 "key ctrl"
+/usr/bin/xsetwacom --set "Wacom Intuos PT S Pad pad" Button 9 "key shift"
