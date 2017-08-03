@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default" afterPath="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default" />
     </list>
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/blender">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+              <caret line="8" column="73" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -55,8 +56,8 @@
       <file leaf-file-name="per-app-framework-default" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="8" column="73" lean-forward="false" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -199,13 +200,13 @@
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-22HD/krita" />
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-22HD/per-app-framework-default" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/krita" />
-        <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default" />
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-22HD/blender" />
         <option value="$PROJECT_DIR$/client/tray-server.py" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/blender" />
+        <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default" />
       </list>
     </option>
   </component>
@@ -698,13 +699,6 @@
       <option name="presentableId" value="Default" />
       <updated>1472634694475</updated>
     </task>
-    <task id="LOCAL-00026" summary="prototyping">
-      <created>1476119677614</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1476119677614</updated>
-    </task>
     <task id="LOCAL-00027" summary="fixed a bug which displays msges twice">
       <created>1476349492184</created>
       <option name="number" value="00027" />
@@ -1041,7 +1035,14 @@
       <option name="project" value="LOCAL" />
       <updated>1501737381864</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="fixing">
+      <created>1501737401694</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1501737401694</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1454,15 +1455,15 @@
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/blender">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="73" lean-forward="true" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+          <caret line="8" column="73" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="8" column="73" lean-forward="false" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
           <folding />
         </state>
       </provider>
