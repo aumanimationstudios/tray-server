@@ -294,7 +294,7 @@ def start_scroll_ui_timer(scroll_timer,scroll_ui):
       scroll_timer.stop()
     if(secs_to_stop > 0):
       debug.info(secs_to_stop)
-      scroll_timer.start(1000*secs_to_stop)
+      scroll_timer.start(2000*secs_to_stop)
   else:
     scroll_ui.timeEdit.setTime(QtCore.QTime.currentTime())
 
