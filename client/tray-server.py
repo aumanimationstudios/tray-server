@@ -392,6 +392,7 @@ def userList():
   except:
     debug.error(sys.exc_info())
 
+
 def action_triggered(*args):
   debug.info(args[0])
   if(args[0] == QtWidgets.QSystemTrayIcon.Trigger):
