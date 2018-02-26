@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender" afterPath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita" afterPath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default" afterPath="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default" />
     </list>
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -564,13 +561,6 @@
       <option name="presentableId" value="Default" />
       <updated>1472634694475</updated>
     </task>
-    <task id="LOCAL-00030" summary="fixed a bug which displays msges twice">
-      <created>1476436242951</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1476436242951</updated>
-    </task>
     <task id="LOCAL-00031" summary="fixed a bug which displays msges twice">
       <created>1476436459241</created>
       <option name="number" value="00031" />
@@ -907,7 +897,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513926406251</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="fixing">
+      <created>1519635426322</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1519635426323</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TodoView">
