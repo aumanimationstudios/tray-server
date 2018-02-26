@@ -2,3 +2,5 @@
 /usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen stylus" MapToOutput HEAD-0
 /usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen eraser" MapToOutput HEAD-0
 /usr/bin/xsetwacom --set "Wacom Intuos Pro M Pen cursor" MapToOutput HEAD-0
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Finger touch" Gesture off
+/usr/bin/xsetwacom --set "Wacom Intuos Pro M Finger touch" touch off
