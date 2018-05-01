@@ -431,6 +431,7 @@ def quit():
   except:
     debug.error(sys.exc_info())
   utilsTray.deleteUserData()
+  idleIn()
   QtCore.QCoreApplication.instance().quit()
   os._exit(0)
 
