@@ -61,6 +61,9 @@ def markAsChecked(id):
 
 
 def updateUserData():
+  if(username == "bluepixels"):
+    debug.warning("Not updating userdata for bluepixels")
+    return(0)
   dbcon = dbTrayServer.dbTray()
   try:
     hostname = socket.gethostname()

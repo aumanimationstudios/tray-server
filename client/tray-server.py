@@ -12,18 +12,21 @@ import subprocess
 import sys
 import tempfile
 import time
-
 import appdirs
 import dbus
 import dbus.mainloop.pyqt5
 import psutil
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
+from Xlib import display
 
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
 basepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-2])
 sys.path.append(basepath)
+sys.path.append("/opt/rbhus/")
 from lib import debug, utilsTray
 
+import rbhus.utils
+import rbhus.auth
 
 def receive_signal(signum, stack):
   quit()
@@ -36,6 +39,8 @@ signal.signal(signal.SIGSEGV, receive_signal)
 
 
 
+acl = rbhus.auth.login()
+acl.useEnvUser()
 
 homeconfig = appdirs.user_config_dir("tray-server")
 try:
@@ -61,6 +66,11 @@ options_dict = {}
 rbhus_notify_ids = {}
 afterTimeNotification = None
 inRbhusNotify = False
+
+
+
+myHostConfig = rbhus.utils.hosts()
+print(myHostConfig.ip)
 
 def update_config(options_ui):
   if(os.path.exists(config_file)):
@@ -224,6 +234,51 @@ class appChangedPoll(QtCore.QThread):
       time.sleep(1)
 
 
+
+class idleCheckerThread(QtCore.QThread):
+  idle_in = QtCore.pyqtSignal()
+  idle_out = QtCore.pyqtSignal()
+
+  def __init__(self):
+    super(idleCheckerThread,self).__init__()
+    self.idle_out.emit()
+
+  def run(self):
+    root_x = None
+    root_y = None
+    idleTime = 0
+    idleTime_startCounter = 0
+
+    while (True):
+
+      data = display.Display().screen().root.query_pointer()._data
+      if ((root_x != data['root_x']) or (root_y != data['root_y'])):
+        root_x = data['root_x']
+        root_y = data['root_y']
+        if(idleTime_startCounter != 0):
+          self.idle_out.emit()
+          idleTime_startCounter = 0
+      else:
+        if (idleTime_startCounter == 0):
+          idleTime_startCounter = time.time()
+        else:
+          if ((time.time() - idleTime_startCounter) >= 10*60):
+            self.idle_in.emit()
+
+      time.sleep(5)
+
+
+def idleIn():
+  debug.debug("in Idle State")
+  myHostConfig.hEnable()
+
+
+def idleOut():
+  debug.debug("out Idle State")
+  myHostConfig.hStop()
+  myHostConfig.hDisable()
+
+
 def main():
   app = QtWidgets.QApplication(sys.argv)
   pidgin_connect_timer = QtCore.QTimer()
@@ -234,6 +289,13 @@ def main():
 
   change_poll = appChangedPoll()
   change_poll.start()
+
+  idle_checker = idleCheckerThread()
+  idle_checker.start()
+  idle_checker.idle_in.connect(idleIn)
+  idle_checker.idle_out.connect(idleOut)
+
+
 
   rbhusNotifies = rbhusNotify()
   rbhusNotifies.start()

@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/blender" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/krita" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/per-app-framework-default" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/idle-test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/tray-server.py" afterPath="$PROJECT_DIR$/client/tray-server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/debug.py" afterPath="$PROJECT_DIR$/lib/debug.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utilsTray.py" afterPath="$PROJECT_DIR$/lib/utilsTray.py" />
     </list>
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,18 +38,18 @@
       <file leaf-file-name="utilsTray.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/utilsTray.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1560">
-              <caret line="110" column="7" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="113" selection-end-column="12" />
+            <state relative-caret-position="433">
+              <caret line="66" column="31" lean-forward="true" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tray-server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/tray-server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-104">
-              <caret line="305" column="0" lean-forward="false" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
+            <state relative-caret-position="602">
+              <caret line="264" column="57" lean-forward="false" selection-start-line="264" selection-start-column="57" selection-end-line="264" selection-end-column="57" />
               <folding>
                 <element signature="e#135#154#0" expanded="true" />
               </folding>
@@ -56,11 +57,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="debug.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/debug.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="blender" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/blender">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="210">
               <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="idle-test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/idle-test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,7 +90,7 @@
       <file leaf-file-name="blender" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="14">
               <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="18" />
               <folding />
             </state>
@@ -79,18 +100,18 @@
       <file leaf-file-name="krita" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/krita">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="42">
               <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="per-app-framework-default" pinned="false" current-in-tab="true">
+      <file leaf-file-name="per-app-framework-default" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/per-app-framework-default">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="42">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,28 +120,8 @@
       <file leaf-file-name="blender" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/blender">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="krita" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="per-app-framework-default" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/per-app-framework-default">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="42">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,7 +130,7 @@
       <file leaf-file-name="per-app-framework-default" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="84">
               <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
@@ -195,8 +196,6 @@
         <option value="$PROJECT_DIR$/tools/__init__.py" />
         <option value="$PROJECT_DIR$/tools/userList.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
-        <option value="$PROJECT_DIR$/lib/utilsTray.py" />
-        <option value="$PROJECT_DIR$/lib/debug.py" />
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/krita" />
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/per-app-framework-default" />
@@ -206,13 +205,16 @@
         <option value="$PROJECT_DIR$/examples/Wacom-Cintiq-22HD/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-PT-S/per-app-framework-default" />
-        <option value="$PROJECT_DIR$/client/tray-server.py" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default" />
         <option value="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/blender" />
         <option value="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/krita" />
         <option value="$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/per-app-framework-default" />
+        <option value="$PROJECT_DIR$/tests/idle-test.py" />
+        <option value="$PROJECT_DIR$/lib/debug.py" />
+        <option value="$PROJECT_DIR$/client/tray-server.py" />
+        <option value="$PROJECT_DIR$/lib/utilsTray.py" />
       </list>
     </option>
   </component>
@@ -222,10 +224,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
     <option name="width" value="1080" />
-    <option name="height" value="1876" />
+    <option name="height" value="1890" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -261,18 +263,7 @@
             <path>
               <item name="tray-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="tray-server" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tray-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tray-server" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
-              <item name="Wacom-Bamboo-One-S" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tray-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tray-server" type="462c0819:PsiDirectoryNode" />
-              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -283,7 +274,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="ics" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="node.js.path.for.package.jscs" value="project" />
@@ -452,6 +443,24 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration name="idle-test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="tray-server" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/idle-test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="rbhusPipe_review" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -524,18 +533,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.tray-server" />
       <item index="1" class="java.lang.String" itemvalue="Python.rbhusPipe_review" />
       <item index="2" class="java.lang.String" itemvalue="Python.utilsTray" />
       <item index="3" class="java.lang.String" itemvalue="Python.userList" />
+      <item index="4" class="java.lang.String" itemvalue="Python.idle-test" />
     </list>
     <recent_temporary>
-      <list size="4">
+      <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.tray-server" />
-        <item index="1" class="java.lang.String" itemvalue="Python.userList" />
-        <item index="2" class="java.lang.String" itemvalue="Python.utilsTray" />
-        <item index="3" class="java.lang.String" itemvalue="Python.rbhusPipe_review" />
+        <item index="1" class="java.lang.String" itemvalue="Python.idle-test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.userList" />
+        <item index="3" class="java.lang.String" itemvalue="Python.utilsTray" />
+        <item index="4" class="java.lang.String" itemvalue="Python.rbhusPipe_review" />
       </list>
     </recent_temporary>
   </component>
@@ -559,13 +570,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1472634694475</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fixed a bug which displays msges twice">
-      <created>1476494913685</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1476494913685</updated>
     </task>
     <task id="LOCAL-00033" summary="fixed a bug which displays msges twice">
       <created>1476498097033</created>
@@ -903,7 +907,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519635489277</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="fixing">
+      <created>1524222332979</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1524222332979</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TodoView">
@@ -916,15 +927,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1080" height="1876" extended-state="4" />
+    <frame x="1920" y="0" width="1080" height="1890" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3486328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1934236" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19708847" sideWeight="0.5097919" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15987125" sideWeight="0.4902081" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272727" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34204546" sideWeight="0.4902081" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3480663" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3392265" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33920455" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22430938" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -938,7 +950,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32747254" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -980,13 +991,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/tray-server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1185,13 +1189,6 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
     <entry file="file:///usr/lib64/python2.7/site-packages/dbus/mainloop/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/lib/debug.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/krita">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1238,7 +1235,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="74" lean-forward="false" selection-start-line="1" selection-start-column="74" selection-end-line="1" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1246,7 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="46" column="79" lean-forward="false" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1254,37 +1249,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="83" column="21" lean-forward="false" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utilsTray.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="110" column="7" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="113" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/per-app-framework-default">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="14">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/blender">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/krita">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="112">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
@@ -1292,25 +1270,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/per-app-framework-default">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="84">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/tray-server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="305" column="0" lean-forward="false" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
-          <folding>
-            <element signature="e#135#154#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Intuos-Pro-M/blender">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="14">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="18" />
           <folding />
         </state>
@@ -1318,15 +1286,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/blender">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="42">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/krita">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="42">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
@@ -1334,9 +1302,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Wacom-Bamboo-One-S/per-app-framework-default">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="42">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Wacom-Cintiq-13HD/blender">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/idle-test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utilsTray.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="66" column="31" lean-forward="true" selection-start-line="66" selection-start-column="31" selection-end-line="66" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/tray-server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="264" column="57" lean-forward="false" selection-start-line="264" selection-start-column="57" selection-end-line="264" selection-end-column="57" />
+          <folding>
+            <element signature="e#135#154#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
