@@ -280,6 +280,8 @@ def idleOut():
 
 
 def main():
+  if(utilsTray.username == "bluepixels"):
+    sys.exit(1)
   app = QtWidgets.QApplication(sys.argv)
   pidgin_connect_timer = QtCore.QTimer()
   user_data_update_timer = QtCore.QTimer()
@@ -289,6 +291,7 @@ def main():
 
   change_poll = appChangedPoll()
   change_poll.start()
+
 
   idle_checker = idleCheckerThread()
   idle_checker.start()
@@ -430,8 +433,10 @@ def quit():
     os.remove(app_lock_file)
   except:
     debug.error(sys.exc_info())
-  utilsTray.deleteUserData()
-  idleIn()
+  if(utilsTray.username != "bluepixels")
+    utilsTray.deleteUserData()
+    idleIn()
+
   QtCore.QCoreApplication.instance().quit()
   os._exit(0)
 
