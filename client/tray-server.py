@@ -433,7 +433,7 @@ def quit():
     os.remove(app_lock_file)
   except:
     debug.error(sys.exc_info())
-  if(utilsTray.username != "bluepixels")
+  if(utilsTray.username != "bluepixels"):
     utilsTray.deleteUserData()
     idleIn()
 
