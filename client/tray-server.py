@@ -275,7 +275,7 @@ def idleIn():
 
 def idleOut():
   debug.debug("out Idle State")
-  myHostConfig.hStop()
+#   myHostConfig.hStop()
   myHostConfig.hDisable()
 
 
