@@ -32,11 +32,21 @@
       <bool>true</bool>
      </property>
      <attribute name="horizontalHeaderVisible">
-      <bool>false</bool>
+      <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
+     <column>
+      <property name="text">
+       <string>username</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>hosts</string>
+      </property>
+     </column>
     </widget>
    </item>
   </layout>
