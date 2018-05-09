@@ -333,6 +333,7 @@ def main():
   options_ui.checkBox_paf_enable.clicked.connect(lambda a, s = options_ui: write_config(s))
   options_ui.checkBox_paf_notify.clicked.connect(lambda a, s=options_ui: write_config(s))
   options_ui.checkBox_pidgin.clicked.connect(lambda a, s=options_ui: write_config(s))
+  options_ui.checkBox_renderauto.clicked.connect(lambda a, s=options_ui: write_config(s))
   tray_icon = QtWidgets.QSystemTrayIcon(QtGui.QIcon(app_icon), app)
   tray_icon.activated.connect(lambda action, tray=tray_icon,ui=options_ui: action_triggered(action,tray,ui))
   menu = QtWidgets.QMenu()
