@@ -29,9 +29,10 @@ args = parser.parse_args()
 
 
 users = lib.utilsTray.getUsers()
+
 if(users):
   for x in users:
-    lib.debug.info(x)
+    print(str(x['host']).ljust(20,"-") + " : " + x['user'])
 
   if(args.ui):
     app = QtWidgets.QApplication(sys.argv)

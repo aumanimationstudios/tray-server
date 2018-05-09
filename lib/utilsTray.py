@@ -108,7 +108,7 @@ def deleteUserData():
 def getUsers():
   dbcon = dbTrayServer.dbTray()
   try:
-    rows = dbcon.execute("select * from users", dictionary=True)
+    rows = dbcon.execute("select * from users order by host", dictionary=True)
     if (rows):
       if (not isinstance(rows, int)):
         return (rows)
