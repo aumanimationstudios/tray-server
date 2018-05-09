@@ -97,6 +97,13 @@ def update_config(options_ui):
     options_ui.checkBox_pidgin.setCheckState(options_dict['pidgin-notify'])
 
     try:
+      options_dict['render-auto'] = config_parser.getint("tray", "render-auto")
+    except:
+      debug.warn(sys.exc_info())
+      options_dict['render-auto'] = options_ui.checkBox_renderauto.checkState()
+    options_ui.checkBox_renderauto.setCheckState(options_dict['render-auto'])
+
+    try:
       options_dict['pidgin-notify-timeout'] = config_parser.getint("tray", "pidgin-notify-timeout")
     except:
       debug.warn(sys.exc_info())
@@ -110,6 +117,7 @@ def update_config(options_ui):
     options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
     options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
     options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
+    options_dict['render-auto'] = options_ui.checkBox_renderauto.checkState()
     options_dict['pidgin-notify-timeout'] = options_ui.spinBoxTimeOut.value()
     return(False)
 
@@ -120,6 +128,7 @@ def write_config(option_ui):
   options_dict['per-app-framework'] = option_ui.checkBox_paf_enable.checkState()
   options_dict['notify-app-changes'] = option_ui.checkBox_paf_notify.checkState()
   options_dict['pidgin-notify'] = option_ui.checkBox_pidgin.checkState()
+  options_dict['render-auto'] = option_ui.checkBox_renderauto.checkState()
   options_dict['pidgin-notify-timeout'] = option_ui.spinBoxTimeOut.value()
   try:
     config_parser.add_section("tray")
@@ -248,7 +257,7 @@ class idleCheckerThread(QtCore.QThread):
     root_y = None
     idleTime = 0
     idleTime_startCounter = 0
-
+    self.idle_out.emit()
     while (True):
 
       data = display.Display().screen().root.query_pointer()._data
@@ -270,13 +279,17 @@ class idleCheckerThread(QtCore.QThread):
 
 def idleIn():
   debug.debug("in Idle State")
-  myHostConfig.hEnable()
+  if(options_dict['render-auto'] == QtCore.Qt.Checked):
+    myHostConfig.hEnable()
 
 
 def idleOut():
   debug.debug("out Idle State")
-#   myHostConfig.hStop()
-  myHostConfig.hDisable()
+  if (options_dict['render-auto'] == QtCore.Qt.Checked):
+    myHostConfig.hDisable()
+    myHostConfig.hStop()
+
+
 
 
 def main():
@@ -294,9 +307,9 @@ def main():
 
 
   idle_checker = idleCheckerThread()
-  idle_checker.start()
   idle_checker.idle_in.connect(idleIn)
   idle_checker.idle_out.connect(idleOut)
+  idle_checker.start()
 
 
 
