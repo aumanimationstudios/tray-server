@@ -274,7 +274,7 @@ class idleCheckerThread(QtCore.QThread):
           if ((time.time() - idleTime_startCounter) >= 10*60):
             self.idle_in.emit()
 
-      time.sleep(5)
+      time.sleep(2)
 
 
 def idleIn():
