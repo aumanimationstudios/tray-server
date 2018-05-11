@@ -258,23 +258,27 @@ class idleCheckerThread(QtCore.QThread):
     idleTime = 0
     idleTime_startCounter = 0
     self.idle_out.emit()
+    data = None
+    screenRoot = display.Display().screen()
     while (True):
-
-      data = display.Display().screen().root.query_pointer()._data
-      if ((root_x != data['root_x']) or (root_y != data['root_y'])):
-        root_x = data['root_x']
-        root_y = data['root_y']
-        if(idleTime_startCounter != 0):
-          self.idle_out.emit()
-          idleTime_startCounter = 0
-      else:
-        if (idleTime_startCounter == 0):
-          idleTime_startCounter = time.time()
+      try:
+        data = screenRoot.root.query_pointer()._data
+        if ((root_x != data['root_x']) or (root_y != data['root_y'])):
+          root_x = data['root_x']
+          root_y = data['root_y']
+          if(idleTime_startCounter != 0):
+            self.idle_out.emit()
+            idleTime_startCounter = 0
         else:
-          if ((time.time() - idleTime_startCounter) >= 10*60):
-            self.idle_in.emit()
+          if (idleTime_startCounter == 0):
+            idleTime_startCounter = time.time()
+          else:
+            if ((time.time() - idleTime_startCounter) >= 10*60):
+              self.idle_in.emit()
+      except:
+        debug.error(sys.exc_info())
 
-      time.sleep(2)
+      time.sleep(5)
 
 
 def idleIn():
