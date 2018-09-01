@@ -232,8 +232,10 @@ class appChangedPoll(QtCore.QThread):
     while (True):
       p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
       for x in p:
+        # print("#@@#@#@#@ --- " +x)
         if (x.startswith("_NET_ACTIVE_WINDOW(WINDOW)")):
-          window_name_cmd = "xprop -id {0}".format(x.split("#")[-1].strip())
+          window_name_cmd = "xprop -id {0}".format(x.split("#")[-1].split(",")[0].strip())
+          # print("############## : "+ window_name_cmd)
           q = subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
           for y in q:
             if (y.startswith("WM_CLASS(STRING)")):
