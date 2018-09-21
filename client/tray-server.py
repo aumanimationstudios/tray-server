@@ -16,6 +16,7 @@ import appdirs
 import dbus
 import dbus.mainloop.pyqt5
 import psutil
+import zmq
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 from Xlib import display
 
@@ -71,6 +72,26 @@ inRbhusNotify = False
 
 myHostConfig = rbhus.utils.hosts()
 print(myHostConfig.ip)
+
+
+
+class apiServCmd(QtCore.QThread):
+  msg_recved = QtCore.pyqtSignal(object)
+  def __init__(self,parent):
+    super(apiServCmd, self).__init__(parent)
+
+    self.context = zmq.Context()
+
+    # Define the socket using the "Context"
+    self.sock = self.context.socket(zmq.PULL)
+    self.sock.bind("ipc:///tmp/rbhusTray_api_serv_"+ utilsTray.username)
+    rbhus.debug.debug("API-SERV")
+  def run(self):
+    while True:
+      obj = self.sock.recv_pyobj()
+      self.msg_recved.emit(obj)
+      # self.sock.send_multipart([bytes(id), "ack"])
+
 
 def update_config(options_ui):
   if(os.path.exists(config_file)):
@@ -295,6 +316,9 @@ def idleOut():
     myHostConfig.hDisable()
     myHostConfig.hStop()
 
+def apiServRun(obj):
+  subprocess.Popen(obj,shell=True)
+
 
 
 
@@ -302,6 +326,12 @@ def main():
   if(utilsTray.username == "bluepixels"):
     sys.exit(1)
   app = QtWidgets.QApplication(sys.argv)
+
+  apiserv = apiServCmd(app)
+  apiserv.msg_recved.connect(apiServRun)
+  apiserv.start()
+
+
   pidgin_connect_timer = QtCore.QTimer()
   user_data_update_timer = QtCore.QTimer()
   pidgin_re_connect_timer = QtCore.QTimer()
