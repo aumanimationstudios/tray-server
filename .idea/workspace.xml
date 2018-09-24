@@ -4,10 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="fixing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tray-server.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/tray-server.py" afterDir="false" />
-    </list>
+    <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="fixing" />
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -239,7 +236,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1920" />
     <option name="width" value="1080" />
     <option name="height" value="1890" />
@@ -954,24 +951,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1917" y="0" width="1086" height="1892" extended-state="7" />
+    <frame x="1917" y="0" width="1086" height="1892" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19772942" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49952698" visible="true" weight="0.3272727" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49952698" weight="0.3272727" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48646036" weight="0.27531284" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32922733" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.500473" side_tool="true" visible="true" weight="0.3272727" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.45411542" side_tool="true" visible="true" weight="0.22272727" />
       <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Run Dashboard" order="9" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.33920455" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.54683065" weight="0.22272727" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.54588455" visible="true" weight="0.22272727" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.3480663" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
