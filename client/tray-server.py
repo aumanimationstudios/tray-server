@@ -289,6 +289,9 @@ class idleCheckerThread(QtCore.QThread):
         if ((root_x != data['root_x']) or (root_y != data['root_y'])):
           root_x = data['root_x']
           root_y = data['root_y']
+
+          myHostConfig.idleSet()
+
           if(idleTime_startCounter != 0):
             self.idle_out.emit()
             idleTime_startCounter = 0
@@ -310,12 +313,13 @@ def idleIn():
     myHostConfig.hEnable()
 
 
+
 def idleOut():
   debug.debug("out Idle State")
   if (options_dict['render-auto'] == QtCore.Qt.Checked):
     myHostConfig.hDisable()
     myHostConfig.hStop()
-    myHostConfig.idleSet()
+
 
 def apiServRun(obj):
   subprocess.Popen(obj,shell=True)
