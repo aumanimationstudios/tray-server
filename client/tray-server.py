@@ -315,6 +315,7 @@ def idleOut():
   if (options_dict['render-auto'] == QtCore.Qt.Checked):
     myHostConfig.hDisable()
     myHostConfig.hStop()
+    myHostConfig.idleSet()
 
 def apiServRun(obj):
   subprocess.Popen(obj,shell=True)
