@@ -307,7 +307,7 @@ class idleCheckerThread(QtCore.QThread):
         debug.error(sys.exc_info())
 
 
-      time.sleep(5)
+      time.sleep(10)
 
 
 def idleIn():
