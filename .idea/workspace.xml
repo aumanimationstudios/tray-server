@@ -4,9 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="fixing">
-      <change beforePath="$PROJECT_DIR$/client/tray-server.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/tray-server.py" afterDir="false" />
-    </list>
+    <list default="true" id="e37e2927-eb59-409b-8dcc-0b6f7a748bd4" name="Default" comment="fixing" />
     <ignored path="per-app-framework.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
