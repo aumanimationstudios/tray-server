@@ -290,7 +290,7 @@ class idleCheckerThread(QtCore.QThread):
           root_x = data['root_x']
           root_y = data['root_y']
 
-
+          myHostConfig.idleSet()
 
           if(idleTime_startCounter != 0):
             self.idle_out.emit()
@@ -302,7 +302,7 @@ class idleCheckerThread(QtCore.QThread):
             if ((time.time() - idleTime_startCounter) >= 10*60):
               self.idle_in.emit()
 
-        myHostConfig.idleSet()
+
       except:
         debug.error(sys.exc_info())
 
