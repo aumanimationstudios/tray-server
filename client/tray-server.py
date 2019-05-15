@@ -633,9 +633,13 @@ def rbhus_notify_open_types(id,type_script,type_script_args,button=None):
 
 def rbhus_notify_done(id):
   debug.info(id)
-  rbhus_notify_ids[id].deleteLater()
-  utilsTray.seeNotification(id)
-  del(rbhus_notify_ids[id])
+  try:
+    rbhus_notify_ids[id].deleteLater()
+    utilsTray.seeNotification(id)
+    del(rbhus_notify_ids[id])
+  except:
+    debug.error("THIS SHOULD NOT HAPPEN ")
+    debug.error(sys.exc_info())
 
 
 
