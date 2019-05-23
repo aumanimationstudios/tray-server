@@ -200,6 +200,9 @@
    </item>
    <item row="4" column="0" colspan="5">
     <widget class="QCheckBox" name="checkBox_renderauto">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>render auto - enable/disable</string>
      </property>
