@@ -1,10 +1,10 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 __author__ = "Shrinidhi Rao"
 __license__ = "GPL"
 __email__ = "shrinidhi666@gmail.com"
 
-import ConfigParser
+import configparser
 import fcntl
 import os
 import signal
@@ -14,11 +14,12 @@ import tempfile
 import time
 import appdirs
 import dbus
-import dbus.mainloop.pyqt5
+import dbus.mainloop.glib
 import psutil
 import zmq
 from PyQt5 import QtWidgets, QtGui, QtCore, uic
 from Xlib import display
+from gi.repository import GLib
 
 filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
 basepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-2])
@@ -28,6 +29,7 @@ from lib import debug, utilsTray
 
 import rbhus.utils
 import rbhus.auth
+import rbhus.debug
 
 def receive_signal(signum, stack):
   quit()
@@ -47,7 +49,7 @@ homeconfig = appdirs.user_config_dir("tray-server")
 try:
   os.makedirs(homeconfig)
 except:
-  debug.warn(sys.exc_info())
+  debug.warning(sys.exc_info())
 
 
 type_dir = os.path.join(basepath,"type")
@@ -61,7 +63,7 @@ app_lock_file = os.path.join(tempfile.gettempdir(),"tray-server-{0}.lock".format
 debug.info(app_lock_file)
 app_icon = os.path.join(basepath,"lib-ui","paf.png")
 pidgin_notity_icon = os.path.join(basepath,"lib-ui","pidgin.png")
-config_parser = ConfigParser.ConfigParser()
+config_parser = configparser.ConfigParser()
 options_dict = {}
 
 rbhus_notify_ids = {}
@@ -99,42 +101,42 @@ def update_config(options_ui):
     try:
       options_dict['per-app-framework'] = config_parser.getint("tray","per-app-framework")
     except:
-      debug.warn(sys.exc_info())
+      debug.warning(sys.exc_info())
       options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
     options_ui.checkBox_paf_enable.setCheckState(options_dict['per-app-framework'])
 
     try:
       options_dict['notify-app-changes'] = config_parser.getint("tray","notify-app-changes")
     except:
-      debug.warn(sys.exc_info())
+      debug.warning(sys.exc_info())
       options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
     options_ui.checkBox_paf_notify.setCheckState(options_dict['notify-app-changes'])
 
     try:
       options_dict['pidgin-notify'] = config_parser.getint("tray", "pidgin-notify")
     except:
-      debug.warn(sys.exc_info())
+      debug.warning(sys.exc_info())
       options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
     options_ui.checkBox_pidgin.setCheckState(options_dict['pidgin-notify'])
 
     # try:
     #   options_dict['render-auto'] = config_parser.getint("tray", "render-auto")
     # except:
-    #   debug.warn(sys.exc_info())
+    #   debug.warning(sys.exc_info())
     #   options_dict['render-auto'] = options_ui.checkBox_renderauto.checkState()
     # options_ui.checkBox_renderauto.setCheckState(options_dict['render-auto'])
 
     try:
       options_dict['pidgin-notify-timeout'] = config_parser.getint("tray", "pidgin-notify-timeout")
     except:
-      debug.warn(sys.exc_info())
+      debug.warning(sys.exc_info())
       options_dict['pidgin-notify-timeout'] = options_ui.spinBoxTimeOut.value()
     options_ui.spinBoxTimeOut.setValue(options_dict['pidgin-notify-timeout'])
 
     return(True)
   else:
-    debug.warn(sys.exc_info())
-    debug.warn("using defaults")
+    debug.warning(sys.exc_info())
+    debug.warning("using defaults")
     options_dict['per-app-framework'] = options_ui.checkBox_paf_enable.checkState()
     options_dict['notify-app-changes'] = options_ui.checkBox_paf_notify.checkState()
     options_dict['pidgin-notify'] = options_ui.checkBox_pidgin.checkState()
@@ -154,7 +156,7 @@ def write_config(option_ui):
   try:
     config_parser.add_section("tray")
   except:
-    debug.warn(sys.exc_info())
+    debug.warning(sys.exc_info())
   for x in options_dict.keys():
     if(x):
       config_parser.set("tray",x,options_dict[x])
@@ -178,8 +180,8 @@ class pidginNotify(QtCore.QObject):
     self.isAlive = False
 
   def start(self):
-    self.dbus_loop = dbus.mainloop.pyqt5.DBusQtMainLoop(set_as_default=True)
-    self.bus = dbus.SessionBus(mainloop=self.dbus_loop)
+    self.dbus_loop = dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    self.bus = dbus.SessionBus()
     self.connectToPidgin()
 
   def startListening(self):
@@ -251,17 +253,23 @@ class appChangedPoll(QtCore.QThread):
     active_window_cmd = "xprop -root"
     lastapp = ""
     while (True):
-      p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
-      for x in p:
+      # p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
+      p = subprocess.Popen(active_window_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+      stdout, stderr = p.communicate()
+      output_lines1 = stdout.decode("utf-8").split("\n")
+      for x in output_lines1:
         # print("#@@#@#@#@ --- " +x)
         if (x.startswith("_NET_ACTIVE_WINDOW(WINDOW)")):
           window_name_cmd = "xprop -id {0}".format(x.split("#")[-1].split(",")[0].strip())
           # print("############## : "+ window_name_cmd)
-          q = subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
-          for y in q:
+          # q = subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()[0].split("\n")
+          q = subprocess.Popen(window_name_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+          stdout, stderr = p.communicate()
+          output_lines2 = stdout.decode("utf-8").split("\n")
+          for y in output_lines2:
             if (y.startswith("WM_CLASS(STRING)")):
               if(lastapp != y):
-                self.app_changed.emit(unicode(y).split("=")[-1].strip().split(",")[-1].strip().strip("\"").lower())
+                self.app_changed.emit(str(y).split("=")[-1].strip().split(",")[-1].strip().strip("\"").lower())
                 lastapp = y
       time.sleep(1)
 
@@ -449,7 +457,7 @@ def app_lock(tray):
       else:
         raise Exception("seems like a different process has the same pid")
     except:
-      debug.warn(sys.exc_info())
+      debug.warning(sys.exc_info())
       f = open(app_lock_file,"w")
       try:
         fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -457,7 +465,7 @@ def app_lock(tray):
         debug.error(sys.exc_info())
         QtCore.QCoreApplication.instance().quit()
         os._exit(1)
-      f.write(unicode(os.getpid()))
+      f.write(str(os.getpid()))
       f.flush()
       fcntl.flock(f, fcntl.LOCK_UN)
       f.close()
@@ -469,7 +477,7 @@ def app_lock(tray):
       debug.error(sys.exc_info())
       QtCore.QCoreApplication.instance().quit()
       os._exit(1)
-    f.write(unicode(os.getpid()))
+    f.write(str(os.getpid()))
     f.flush()
     fcntl.flock(f, fcntl.LOCK_UN)
     f.close()
@@ -554,7 +562,7 @@ def notity_pidgin_received_msg(tray,*args):
   debug.info(args)
   if(options_dict['pidgin-notify'] == QtCore.Qt.Checked):
     localtime = time.localtime()
-    tray.showMessage(args[0][1].split("@")[0] +" - "+ unicode(localtime.tm_hour) +":"+ unicode(localtime.tm_min) ,args[0][2],msecs=1000*options_dict['pidgin-notify-timeout'],icon=QtWidgets.QSystemTrayIcon.Information)
+    tray.showMessage(args[0][1].split("@")[0] +" - "+ str(localtime.tm_hour) +":"+ str(localtime.tm_min) ,args[0][2],msecs=1000*options_dict['pidgin-notify-timeout'],icon=QtWidgets.QSystemTrayIcon.Information)
 
 
 

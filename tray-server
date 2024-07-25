@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+source /opt/tray-server/tray-server-env/bin/activate
+cd /opt/tray-server/client || return
+python3 /opt/tray-server/client/tray-server.py
+cd - || return

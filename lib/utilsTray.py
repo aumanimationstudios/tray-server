@@ -1,12 +1,18 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 #-*- coding: utf-8 -*-
 __author__ = "Shrinidhi Rao"
 __license__ = "GPL"
 __email__ = "shrinidhi666@gmail.com"
 
-import dbTrayServer
 import os
 import sys
+
+filepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-1])
+basepath = os.sep.join(os.path.abspath(__file__).split(os.sep)[0:-2])
+sys.path.append(filepath)
+sys.path.append(basepath)
+
+import dbTrayServer
 import uuid
 import debug
 import MySQLdb
