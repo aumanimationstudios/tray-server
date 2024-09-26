@@ -159,9 +159,9 @@ def write_config(option_ui):
     debug.warning(sys.exc_info())
   for x in options_dict.keys():
     if(x):
-      config_parser.set("tray",x,options_dict[x])
+      config_parser.set("tray",x,f"{options_dict[x]}")
 
-  with open(config_file,"wb") as config_fd:
+  with open(config_file,"w") as config_fd:
     config_parser.write(config_fd)
   debug.info("writing config file - done")
 

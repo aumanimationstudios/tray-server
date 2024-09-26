@@ -2,3 +2,5 @@
 *.pyc
 *.*swp
 env.set
+*.idea/
+*.idea/*
