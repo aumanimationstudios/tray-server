@@ -577,7 +577,8 @@ def rbhus_notify(scroll_ui,*args):
     else:
       checked = False
 
-    if(not rbhus_notify_ids.has_key(x['id'])):
+    # if(not rbhus_notify_ids.has_key(x['id'])):
+    if x['id'] not in rbhus_notify_ids:
       msg_box = uic.loadUi(textBox_ui_file)
       msg_box.setParent(scroll_ui)
       msg_box.labelTitle.setText(x['title'])
