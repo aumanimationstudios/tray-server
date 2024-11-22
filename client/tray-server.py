@@ -391,9 +391,11 @@ def main():
   menu = QtWidgets.QMenu()
   user_list = menu.addAction("users")
   scroll_menu_action = menu.addAction("rbhus-notifications")
+  fix_pen_display_action = menu.addAction("fix-pen-display")
   tray_icon.setContextMenu(menu)
   user_list.triggered.connect(userList)
   scroll_menu_action.triggered.connect(lambda s ,scroll_ui=scroll_ui:show_rbhus_notify(scroll_ui,True))
+  fix_pen_display_action.triggered.connect(fix_pen_display)
   tray_icon.setToolTip("tray-server")
   tray_icon.show()
   change_poll.app_changed.connect(lambda s, tray=tray_icon : run_per_app(tray, s))
@@ -526,6 +528,14 @@ def userList():
   except:
     debug.error(sys.exc_info())
 
+def fix_pen_display():
+  pd_cmd = "/proj/standard/share/penDisplay.py"
+  debug.info(pd_cmd)
+  try:
+    p = subprocess.Popen(pd_cmd, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    debug.info(p)
+  except:
+    debug.error(sys.exc_info())
 
 def action_triggered(*args):
   debug.info(args[0])
